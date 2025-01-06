@@ -1,0 +1,277 @@
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Distribute space between left and right sections */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+  }
+  
+  .navbar-left, .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-left .logo img {
+    height: 40px;
+  }
+  
+  .navbar-left .corporate-events {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .navbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Push watchlist and cart to the right side */
+    flex-grow: 1; /* Take remaining space to push everything to the left */
+  }
+  
+  .navbar-center .watchlist,
+  .navbar-center .cart {
+    display: flex;
+    align-items: center;
+    margin-left: 15px; /* Margin between the icons */
+  }
+  
+  .navbar-center .watchlist span,
+  .navbar-center .cart span {
+    margin-left: 8px;
+    font-size: 16px;
+  }
+  
+  .navbar-right .sign-in {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .navbar-right .sign-in:hover {
+    color: #007bff;
+  }
+  /* Add to Style.css */
+.wishlist-page {
+    padding: 20px;
+  }
+  
+  .wishlist-page h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .wishlist-items {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .wishlist-item {
+    background-color: #f8f8f8;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wishlist-item h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .wishlist-item p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .wishlist-item button {
+    padding: 10px 15px;
+    background-color: #ff4b5c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .wishlist-item button:hover {
+    background-color: #ff2f3b;
+  }
+  
+  .go-to-cart-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  .go-to-cart-btn:hover {
+    background-color: #0056b3;
+  }
+  /* Add to Style.css */
+
+/* Modal background */
+.login-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+  display: flex;
+  justify-content: flex-end;  /* Align modal to the right */
+  align-items: flex-start;    /* Align modal content to the top */
+  padding-top: 50px;           /* Space from the top */
+  z-index: 1000;
+}
+
+/* Modal content box */
+.login-modal-content {
+  background: white;
+  padding: 20px;
+  width: 100%;
+  max-width: 280px;  /* Control the width of the modal */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  position: relative;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff4b5c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.close-btn:hover {
+  background-color: #ff2f3b;
+}
+
+/* Form fields */
+.login-modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-modal-content input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.login-modal-content button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-modal-content button:hover {
+  background-color: #0056b3;
+}
+/* Add to Style.css */
+
+/* General Layout */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('https://via.placeholder.com/1500') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Login container */
+.login-container {
+  background-color: rgba(255, 255, 255, 0.9);  /* Light overlay for contrast */
+  padding: 40px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Title */
+.login-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Form elements */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+/* Forgot password link */
+.forgot-password {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Sign In button */
+.btn-signin {
+  width: 100%;
+  padding: 12px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-signin:hover {
+  background-color: #444;
+}
+
+/* Sign up prompt */
+.signup-prompt {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.signup-prompt a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-prompt a:hover {
+  text-decoration: underline;
+}
