@@ -1,0 +1,77 @@
+/* Container for the entire navbar to ensure it's centered */
+.navbar-container {
+    display: flex;
+    justify-content: center; /* Center the navbar horizontally */
+    align-items: center;
+    flex-direction: column; /* Stack the lines and navbar vertically */
+    width: 100%; /* Ensure full width */
+}
+
+/* Navbar container styling */
+.navbar3 {
+    background-color: #f3eded;
+    padding: 10px 0; /* Reduced padding for a smaller size */
+    color: rgb(4, 4, 4);
+    position: relative;
+    width: 80%; /* Limit width for a compact navbar */
+    text-align: center; /* Center content */
+}
+
+/* Horizontal line above the navbar */
+.navbar3::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #131212; /* White color for the line */
+    left: 0;
+    top: -5px; /* Line above the navbar */
+}
+
+/* Horizontal line below the navbar */
+.navbar3::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #1b1a1a; /* White color for the line */
+    left: 0;
+    bottom: -5px; /* Line below the navbar */
+}
+
+/* Horizontal navigation list */
+.nav-list {
+    display: flex;
+    list-style-type: none; /* Remove default list styles */
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Center the items horizontally */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.nav-item {
+    margin: 0 10px; /* Smaller space between items */
+    font-size: 14px; /* Smaller font size */
+    text-transform: uppercase; /* Make text uppercase */
+    cursor: pointer;
+    position: relative;
+}
+
+/* Add vertical bar separator between items */
+.nav-item:not(:last-child)::after {
+    content: "|"; /* Adds a vertical bar between items */
+    margin-left: 10px; /* Smaller space between text and vertical bar */
+    color: #121212; /* Color of the separator */
+}
+
+/* Hover effect for the nav items */
+.nav-item:hover {
+    color: #ff9900; /* Change color on hover */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .navbar-container {
+        display: none; /* Hide the entire navbar container in mobile view */
+    }
+}

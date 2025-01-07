@@ -1,0 +1,111 @@
+.navbar2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcfafa;
+    padding: 15px 20px;
+    color: white;
+}
+
+.navbar2 .logo {
+    margin-right: 30px;
+}
+
+/* Adjusting the logo size */
+.navbar2 .logo img {
+    height: 50px; 
+    width:50PX;  
+}
+
+.navbar2 .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.navbar2 .search-container input[type="text"] {
+    padding: 20px 40px 20px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    width: 650px;
+}
+
+.navbar2 .search-container input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+.navbar2 .search-container .search-icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #555;
+}
+/* Default styles for desktop and larger screens */
+.navbar2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2e7e7;
+    padding: 15px 20px;
+    color: white;
+}
+
+.navbar2 .logo {
+    margin-right: 30px;
+}
+
+/* Adjusting the logo size */
+.navbar2 .logo img {
+    height: 40px; /* Set the height to your preferred size */
+    width: auto;  /* Maintain the aspect ratio */
+}
+
+.navbar2 .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.navbar2 .search-container input[type="text"] {
+    padding: 20px 40px 20px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    width: 650px;
+}
+
+.navbar2 .search-container input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+.navbar2 .search-container .search-icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #555;
+}
+
+/* Responsive styles for mobile screens */
+@media (max-width: 768px) {
+    .navbar2 {
+        flex-direction: column; /* Stack the elements vertically */
+        align-items: flex-start; /* Align to the left */
+    }
+
+    .navbar2 .logo {
+        display: none; /* Hide the logo */
+    }
+
+    .navbar2 .search-container {
+        width: 100%; 
+    }
+
+    .navbar2 .search-container input[type="text"] {
+        width: 100%; 
+    }
+}

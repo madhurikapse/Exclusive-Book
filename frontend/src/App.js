@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './components/Cart';
@@ -8,12 +8,26 @@ import LoginPage from './pages/LoginPage';
 import WishlistPage from './pages/WishlistPage';
 import Forgetpass from "./pages/Forgetpass"
 import SignUpPage from './pages/SignUp';
+import Navbar2 from './components/Navbar2';
+import Navbar3 from './components/Navbar3';
+import Slider from './components/Slider';
+import TopBooks from './components/TopBook';
+import Wishlist from './components/Wishlist';
 function App() {
+
+  const [wishlist, setWishlist] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   return (
     <Router>
       <div className="App">
         
-      <Navbar/>
+      
+      <Navbar wishlist={wishlist} cartItems={cartItems} />
+      <Navbar2/>
+      <Navbar3/>
+      <Slider/>
+      
+      <TopBooks setCartItems={setCartItems} />
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/book/:id" element={<BookDetailsPage/>} />
@@ -22,6 +36,12 @@ function App() {
         <Route path="/wishlist" element={<WishlistPage/>} />
         <Route path="/forgot-password" element={<Forgetpass/>} />
         <Route path="/sign-up" element={<SignUpPage/>} />
+        <Route
+          path="/"
+          element={<TopBooks setWishlist={setWishlist} setCartItems={setCartItems} />}
+        />
+        <Route path="/wishlist" element={<Wishlist wishlist={wishlist} />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
         </Routes>
       </div>
     </Router>
