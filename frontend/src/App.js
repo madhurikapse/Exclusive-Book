@@ -13,6 +13,10 @@ import Navbar3 from './components/Navbar3';
 import Slider from './components/Slider';
 import TopBooks from './components/TopBook';
 import Wishlist from './components/Wishlist';
+import BookSlider from './components/BookSlider';
+import NonFiction from './components/NonFiction';
+import BiographyBestsellers from './components/BiographyBestsellers';
+import TextSlider from './components/TextSlider';
 function App() {
 
   const [wishlist, setWishlist] = useState([]);
@@ -26,8 +30,11 @@ function App() {
       <Navbar2/>
       <Navbar3/>
       <Slider/>
-      
       <TopBooks setCartItems={setCartItems} />
+      <BookSlider/>
+      <NonFiction/>
+      <BiographyBestsellers/>
+      <TextSlider/>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/book/:id" element={<BookDetailsPage/>} />

@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+  }
+  
+  .slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    overflow: hidden;
+  }
+  
+  .book-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .book {
+    flex: 0 0 33.333%;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .section-title {
+    font-weight: 800; /* Increased font weight for a bolder title */
+    font-size:29px;/* Optional: Adjust font size if needed */
+  }
+  
+  .book img {
+    width: 300px; /* Keep the image size within the container */
+    height: 400px; /* Maintain aspect ratio */
+    max-height: 400px; /* Prevent images from becoming too tall */
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+  }
+  
+  .control.prev {
+    left: 5%; /* Position control relative to the screen width */
+  }
+  
+  .control.next {
+    right: 5%;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .book {
+      flex: 0 0 50%; /* Display two books at a time on smaller screens */
+    }
+  
+    .control.prev {
+      left: 10px; /* Adjust button position for small screens */
+    }
+  
+    .control.next {
+      right: 10px;
+    }
+  }
+  

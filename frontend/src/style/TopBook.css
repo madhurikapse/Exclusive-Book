@@ -8,18 +8,34 @@
     text-align: center;
 }
 
-.section-title {
+.section-title1{
     font-size: 24px;
-    font-weight: bold;
+    font-weight:400px;
     margin-right: 900px;
     margin-bottom: 20px;
     text-align: center;
 }
-
+.section-title2{
+    font-size: 24px;
+    font-weight:400px;
+    margin-right: 900px;
+    margin-left:-40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.section-title3{
+    font-size: 24px;
+    font-weight:400px;
+    margin-right: 900px;
+    margin-left:-20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 .section-line {
     width:80%;
     border: 0;
-    border-top: 3px solid #000;
+    height: 10px;
+    border-top: 3px solid #939191;
     margin-bottom: 20px;
 }
 
@@ -37,7 +53,7 @@
 
 .book-image {
     width: 100%;
-    height: auto;
+    height:200px;
     border-radius: 10px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s, box-shadow 0.3s;
