@@ -1,31 +1,28 @@
-/* Container for the slider */
+/* Basic styles for the slider container */
 .slider-container {
-  width:600px; /* Full width of the page */
-  height: 100%; /* Full height of the viewport */
-  margin: 0; /* Center horizontally if needed */
   position: relative;
-  overflow: hidden;
+  width: 100%;
+  max-width: 100%; /* Makes sure the slider doesn't exceed the screen width */
+  margin: 0 auto; /* Centers the slider */
+  overflow: hidden; /* Hide the parts of the image that go beyond the container */
 }
 
-/* Styling for the slider itself */
+/* Styles for the actual slider */
 .slider {
   display: flex;
-  flex-direction: row; /* Ensure images are side by side */
-  width:100%; /* Full width of the slider */
-  height: 100%; /* Full height of the container */
   position: relative;
-  margin: 0;
+  width: 100%;
+  transition: transform 0.5s ease-in-out; /* Smooth transition when switching images */
 }
 
-/* Style for the image inside the slider */
+/* Style for individual images */
 .slider-image {
-  width: 100%; /* Full width of the slider container */
-  height: 100%; /* Full height of the slider container */
-  object-fit: cover; /* Ensures the image covers the container without distortion */
-  display: block; /* Removes inline spacing */
+  width: 100%;
+  height: auto; /* Keep the aspect ratio intact */
+  display: block;
 }
 
-/* Buttons for navigating the slider */
+/* Styles for the navigation buttons (previous & next) */
 .prev,
 .next {
   position: absolute;
@@ -34,21 +31,22 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px;
-  font-size: 24px;
+  padding: 15px;
   cursor: pointer;
-  z-index: 10;
+  font-size: 30px;
+  z-index: 10; /* Ensure buttons are on top of the images */
+  transition: background-color 0.3s ease;
 }
 
 .prev {
-  left: 10px;
+  left: -20;
 }
 
 .next {
   right: 10px;
 }
 
-/* Add hover effect on the buttons */
+/* Hover effect for buttons */
 .prev:hover,
 .next:hover {
   background-color: rgba(0, 0, 0, 0.8);

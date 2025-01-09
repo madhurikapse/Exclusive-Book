@@ -30,7 +30,7 @@ const Slider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage(); // Call nextImage to update the image
-    }, 2000); // 2000ms = 2 seconds
+    }, 3000); // 2000ms = 2 seconds
 
     // Cleanup the interval when the component is unmounted
     return () => clearInterval(interval);
