@@ -1,78 +1,101 @@
+/* General Body Styling */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-  }
-  
-  .slider-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 80%;
-    margin: auto;
-    margin-top: 50px;
-    overflow: hidden;
-  }
-  
-  .book-slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+}
+
+/* Container for the Slider */
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  overflow: hidden;
+}
+
+/* Book Slider Styling */
+.book-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+/* Each Book Item */
+.book {
+  flex: 0 0 33.333%;  /* Show 3 books per slide by default */
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* Center the image */
+  align-items: center;
+}
+
+.section-title {
+  font-weight: 800; /* Increased font weight for a bolder title */
+  font-size: 29px;  /* Adjust font size */
+}
+
+/* Image Styling for Books */
+.book img {
+  width: 100%;  /* Allow image to scale properly */
+  max-width: 300px;  /* Set a maximum width */
+  height: auto;  /* Maintain aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Controls (Next/Prev) Styling */
+.control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+
+/* Positioning for the Left and Right Controls */
+.control.prev {
+  left: 5%;  /* Position control relative to the screen width */
+}
+
+.control.next {
+  right: 5%;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
   .book {
-    flex: 0 0 33.333%;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
+    flex: 0 0 50%;  /* Show two books per slide on smaller screens */
   }
-  
-  .section-title {
-    font-weight: 800; /* Increased font weight for a bolder title */
-    font-size:29px;/* Optional: Adjust font size if needed */
-  }
-  
-  .book img {
-    width: 300px; /* Keep the image size within the container */
-    height: 400px; /* Maintain aspect ratio */
-    max-height: 400px; /* Prevent images from becoming too tall */
-    border-radius: 10px;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 10;
-  }
-  
+
   .control.prev {
-    left: 5%; /* Position control relative to the screen width */
+    left: 10px;  /* Adjust button position for small screens */
   }
-  
+
   .control.next {
-    right: 5%;
+    right: 10px;
   }
-  
-  /* Media query for smaller screens */
-  @media (max-width: 768px) {
-    .book {
-      flex: 0 0 50%; /* Display two books at a time on smaller screens */
-    }
-  
-    .control.prev {
-      left: 10px; /* Adjust button position for small screens */
-    }
-  
-    .control.next {
-      right: 10px;
-    }
+}
+
+/* Media query for mobile screens (max-width 480px) */
+@media (max-width: 480px) {
+  .book {
+    flex: 0 0 100%;  /* Show one book per slide on very small screens */
   }
-  
+
+  .control.prev,
+  .control.next {
+    font-size: 18px;  /* Make the controls smaller */
+    padding: 8px;
+  }
+}

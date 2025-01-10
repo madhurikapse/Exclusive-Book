@@ -59,7 +59,7 @@
 
 /* Adjusting the logo size */
 .navbar2 .logo img {
-    height: 40px; /* Set the height to your preferred size */
+    height: 90px; /* Set the height to your preferred size */
     width: auto;  /* Maintain the aspect ratio */
 }
 

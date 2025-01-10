@@ -1,65 +1,79 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9; /* Light Background */
+  color: #333; /* Dark Gray Text */
 }
 
-.home {
-  padding: 20px;
-}
-
-h1 {
+.App {
   text-align: center;
-  color: #333;
 }
 
-.book-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.book-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 200px;
-}
-
-.book-card img {
-  width: 100%;
-  height: auto;
-}
-
-.book-card h2 {
+/* Navbar Styling */
+.navbar {
+  background-color: #0056b3; /* Blue Background */
+  color: #fff;
+  padding: 15px 20px;
   font-size: 18px;
-  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.book-card p {
-  color: #555;
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 10px;
 }
 
-.book-details {
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
+.navbar a:hover {
+  color: #ffdd00; /* Gold Accent */
+}
+
+/* Section Styling */
+.section {
+  padding: 30px;
+  background-color: #ffffff; /* White Background for Cards */
+  border-radius: 8px;
   margin: 20px auto;
-  width: 80%;
-  max-width: 600px;
+  width: 90%;
+  max-width: 1200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.book-details img {
-  width: 100%;
-  height: auto;
+.section h2 {
+  color: #0056b3; /* Blue Title */
+  margin-bottom: 15px;
 }
 
-.cart {
-  padding: 20px;
-  background-color: #fff;
+.section p {
+  color: #555; /* Medium Gray Text */
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Button Styling */
+button {
+  background-color: #0056b3; /* Blue Button */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
   border-radius: 5px;
-  margin: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #004494; /* Darker Blue */
+}
+
+footer {
+  background-color: #333; /* Dark Footer */
+  color: #fff;
+  padding: 15px;
+  font-size: 14px;
+  text-align: center;
 }

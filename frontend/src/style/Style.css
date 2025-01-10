@@ -12,9 +12,10 @@
   }
   
   .navbar-left .logo img {
-    height: 40px;
+    height: 190px; /* Set the height to your preferred size */
+    width: auto; 
   }
-  
+
   .navbar-left .corporate-events {
     margin-left: 10px;
     font-size: 18px;

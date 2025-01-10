@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa'; 
-import CompanyLogo from '../components/CompanyLogo.jpg';
+import CompanyLogo1 from '../components/CompanyLogo1.jpg';
 import '../style/Style.css';
 import "../style/Sign.css";
 
@@ -39,7 +39,7 @@ const Navbar = ({ cartItems }) => {
       <nav className="navbar">
         <div className="navbar-left">
           <a href="#" className="logo">
-            <img src={CompanyLogo} alt="Company Logo" />
+            <img src={CompanyLogo1} alt="Company Logo" />
           </a>
           <span className="corporate-events">Corporate Events</span>
         </div>

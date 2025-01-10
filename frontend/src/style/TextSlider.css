@@ -1,94 +1,118 @@
-/* General layout for the whole container */
+/* BookSlider.css */
+
 .main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .center-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    align-items: flex-start;
-  }
-  
-  /* Left side constant text with star rating */
-  .left-side {
-    flex: 1;
-    padding-right: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  /* Centered reviews slider */
-  .slider-container {
-    flex: 3;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    overflow: hidden;
-  }
-  
-  /* Book slider content */
-  .book-slider {
-    display: flex;
-    flex-direction: row;
-    transition: transform 0.5s ease-in-out; /* Add transition for smooth sliding */
-  }
-  
-  .review-box {
-    margin-right: 20px; /* Space between reviews */
-    flex: 0 0 auto; /* Prevent flex from stretching the box */
-  }
-  
-  .review {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px; /* Control width of each review box */
-  }
-  
-  /* Rating stars */
-  .rating {
-    display: flex;
-    margin-bottom: 10px;
-  }
-  
-  .review h3 {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  .review p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 250px;
-    font-size: 14px;
-  }
-  
-  /* Control button for slider */
-  .control {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    transform: translateY(-50%);
-  }
-  
-  /* Additional Styles for Star Ratings */
-  .rating .star {
-    margin-right: 2px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.center-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.left-side {
+  flex: 1;
+  background-color: #ffd700;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.left-side h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.left-side .rating {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.left-side span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.slider-container {
+  flex: 3;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.book-slider {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.review-box {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30%;
+}
+
+.review-box h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.review-box p {
+  font-size: 14px;
+  color: #555;
+}
+
+.review-box .rating {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffd700;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.control:hover {
+  background-color: #ffc300;
+}
+
+.control.next {
+  right: 10px;
+}
+

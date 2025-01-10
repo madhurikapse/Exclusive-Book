@@ -1,13 +1,13 @@
 import React from 'react';
 import '../style/Navbar2.css';
 import { FaSearch } from 'react-icons/fa';
-import CompanyLogo from '../components/CompanyLogo.jpg'; // Adjust path if necessary
+import CompanyLogo1 from '../components/CompanyLogo1.jpg'; // Adjust path if necessary
 
 const Navbar2 = () => {
     return (
         <div className="navbar2">
             <a href="#" className="logo">
-                <img src={CompanyLogo} alt="Company Logo" />
+                <img src={CompanyLogo1} alt="Company Logo" />
             </a>
             <div className="search-container">
                 <FaSearch className="search-icon" />
