@@ -1,0 +1,155 @@
+/* Footer.css */
+
+/* Style for the entire footer */
+.footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  /* Footer section styles */
+  .footer-section {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  /* Customer Care section styling */
+  .footer-section.customer-care {
+    background-color: black; /* Black background */
+    color: white; /* White text */
+  }
+  
+  .footer-section.customer-care h3,
+  .footer-section.customer-care p,
+  .footer-section.customer-care ul li {
+    color: white; /* White text for customer care section */
+  }
+  
+  /* Customer Services section styling */
+  .footer-section h3 {
+    font-size: 18px;
+    color: black; /* Black color for section headers */
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .footer-section ul li {
+    margin: 5px 0;
+  }
+  
+  .footer-section ul li a {
+    text-decoration: none;
+    color: black; /* Black color for links */
+    font-size: 16px;
+    transition: color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  .footer-section ul li a:hover {
+    color: #444; /* Dark grey on hover */
+  }
+  
+  /* Subscribe form styles */
+  .footer-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .footer-section form input {
+    padding: 12px 20px; /* Increased padding */
+    font-size: 16px; /* Font size */
+    border: 1px solid #ccc; /* Border for inputs */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  .footer-section form button {
+    background-color: black; /* Black background for the button */
+    color: white; /* White text on the button */
+    border: none;
+    padding: 12px 25px; /* Improved padding for the button */
+    font-size: 16px; /* Adjusted font size */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners for the button */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+  }
+  
+  .footer-section form button:hover {
+    background-color: #444; /* Darker shade of black on hover */
+  }
+  
+  /* Social media box styles */
+  .social-media-box {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    background-color: #333; /* Dark background for the social media box */
+    padding: 12px;
+    border-radius: 5px;
+  }
+  
+  /* Social icon links */
+  .social-icon {
+    color: white; /* White color for links */
+    text-decoration: none;
+    font-size: 24px; /* Icon size */
+    padding: 10px;
+    transition: color 0.3s ease; /* Smooth hover transition */
+  }
+  
+  .social-icon:hover {
+    color: #ccc; /* Light grey color on hover */
+  }
+  
+  /* Footer bottom styles */
+  .footer-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .footer-bottom p {
+    color: black;
+  }
+  
+  /* Mobile view adjustments */
+  @media (max-width: 768px) {
+    /* Hide the sections in mobile view */
+    .footer-section.customer-care,
+    .footer-section.about-us,
+    .footer-section.customer-services {
+      display: none;
+    }
+  
+    /* Add collapsible menu for mobile */
+    .footer-section.collapsible-menu {
+      display: block;
+      background-color: #333;
+      padding: 15px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    /* Show the sections when clicked */
+    .footer-section.collapsible-menu.active + .footer-section.customer-care,
+    .footer-section.collapsible-menu.active + .footer-section.customer-care + .footer-section.about-us,
+    .footer-section.collapsible-menu.active + .footer-section.customer-care + .footer-section.about-us + .footer-section.customer-services {
+      display: block;
+    }
+  
+    /* Reposition the subscribe section below */
+    .footer-section.subscribe {
+      margin-top: 20px;
+    }
+  }
+  

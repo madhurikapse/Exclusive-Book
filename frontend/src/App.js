@@ -17,6 +17,8 @@ import BookSlider from './components/BookSlider';
 import NonFiction from './components/NonFiction';
 import BiographyBestsellers from './components/BiographyBestsellers';
 import TextSlider from './components/TextSlider';
+import ChildrenBestsellers from './components/Children\'sBestsellers';
+import Footer from './components/Footer';
 function App() {
 
   const [wishlist, setWishlist] = useState([]);
@@ -35,6 +37,8 @@ function App() {
       <NonFiction/>
       <BiographyBestsellers/>
       <TextSlider/>
+      <ChildrenBestsellers  setCartItems={setCartItems}/>
+      <Footer/>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/book/:id" element={<BookDetailsPage/>} />
