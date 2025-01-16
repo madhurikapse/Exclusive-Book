@@ -1,63 +1,95 @@
-// src/pages/LoginPage.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../style/Login.css';
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import Api from "../AxiosConfig";
+import { AuthContext } from "../context/AuthContext";
 
+const Login = () => {
+  const { state, dispatch } = useContext(AuthContext);
 
-const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const router = useNavigate();
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (e) => {
+  console.log(userData, "userData");
+  function handleChange(event) {
+    // console.log(event.target.value, event.target.name);
+    setUserData({ ...userData, [event.target.name]: event.target.value });
+    // Obj["awdiz"]
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    // Handle login logic here (e.g., send request to backend)
-    console.log('Email:', email);
-    console.log('Password:', password);
-  };
+    // api call to backend
+    try {
+      if (userData.email && userData.password) {
+        const response = await Api.post("/auth/login", { userData });
+        // const response = {
+        //   data: {
+        //     success: true,
+        //     message: "Login successfull.",
+        //     userData: { name: "Awdiz" },
+        //   },
+        // };
+        if (response.data.success) {
+          dispatch({ type: "LOGIN", payload: response.data.userData });
+          // LOGIN(userData)
+          setUserData({
+            email: "",
+            password: "",
+          });
+          router("/");
+          toast.success(response.data.message);
+        } else {
+          toast.error(response?.data?.error);
+          // console.log(response.data.error, "error")
+        }
+      } else {
+        throw Error("All fields are mandatory.");
+        // toast.error("All fields are mandatory.");
+      }
+    } catch (error) {
+      console.log(error, "error");
+      //   console.log(error);
+      //   error =  { data : { success : false, message : "Password is invalid."}}
+      toast.error(error?.response?.data?.error);
+    }
+  }
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <h2>Sign In</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-actions">
-            <Link to="/forgot-password" className="forgot-password">
-              Forgot your password?
-            </Link>
-            <button type="submit" className="btn-signin">Sign In</button>
-          </div>
-        </form>
-
-        <div className="signup-prompt">
-          <p>Don't have an account? <Link to="/sign-up">Create one</Link></p>
-        </div>
-      </div>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
+        <label>Email : </label>
+        <br />
+        <input
+          type="email"
+          onChange={handleChange}
+          name="email"
+          value={userData.email}
+        />
+        <br />
+        <label>Password : </label>
+        <br />
+        <input
+          type="password"
+          onChange={handleChange}
+          name="password"
+          value={userData.password}
+        />
+        <br />
+        <input type="submit" value="Login" />
+        <br />
+      </form>
+      <button onClick={() => router("/register")}>Register ?</button>
+      <button onClick={() => router("/register-admin")}>
+        Admin Register ?
+      </button>
+      <button onClick={() => router("/login-admin")}>Admin Login ?</button>
     </div>
   );
 };
 
-export default LoginPage;
+export default Login;

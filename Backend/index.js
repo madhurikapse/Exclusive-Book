@@ -1,36 +1,37 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import bookRoutes from './routes/bookRoutes.js';  // Include the .js extension
-
-dotenv.config();
-
+import express from "express";
+import dotenv from "dotenv";
+import AllRoutes from "./routes/index.js";
+import mongoose from "mongoose";
+import cors from "cors";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
 const app = express();
-const port = process.env.PORT || 3000;
-const mongoUrl = process.env.MONGODB_URL;
-
-// Middleware
-app.use(cors());
-
-// Connecting to MongoDB Database
-mongoose
-  .connect(mongoUrl)
-  .then(() => {
-    console.log('DB Connected');
+app.use(cookieParser());
+app.use(morgan("combined"));
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:3000"],
   })
-  .catch((err) => {
-    console.log(err);
-  });
+);
+dotenv.config();
+app.use(express.json());
 
-// Defining the API routes
-app.get('/', (req, res) => {
-  res.send('Hello Roxiler Systems!');
+app.get("/", function (req, res) {
+  res.send("working.");
 });
 
-app.use('/',bookRoutes);
+app.use("/api/v1", AllRoutes);
 
-// Starting the server
-app.listen(port, () => {
-  console.log(`API Info: http://localhost:${port}/api/`);
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send("Internal Server Error");
+});
+
+mongoose
+  .connect(process.env.MONGODB_URL)
+  .then(() => console.log("DB connected."));
+
+app.listen(process.env.PORT_NUMBER, () => {
+  console.log(`Server is running on port ${process.env.PORT_NUMBER}.`);
 });

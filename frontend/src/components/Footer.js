@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../style/Footer.css';
+import axios from 'axios';
 
 const Footer = () => {
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Check if the required fields are not empty
+    if (!firstName || !email) {
+      setMessage('Please fill in both your first name and email address.');
+      return;
+    }
+
+    try {
+      // Send POST request to the backend to handle subscription
+      const response = await axios.post('http://localhost:5000/api/subscribe', {
+        firstName,
+        email,
+      });
+
+      if (response.data.success) {
+        setMessage('Subscription successful! Check your email for confirmation.');
+        setFirstName('');
+        setEmail('');
+      } else {
+        setMessage('Subscription failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('Subscription failed. Please try again.');
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer-section customer-care">
@@ -53,23 +88,32 @@ const Footer = () => {
       <div className="footer-section">
         <h3>Subscribe</h3>
         <p>Get exclusive deals, previews, and updates when you subscribe.</p>
-        <form action="#" method="post">
+
+        <form onSubmit={handleSubmit}>
           <label htmlFor="first-name">Your First Name</label>
           <input
             type="text"
             id="first-name"
             name="first-name"
             placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
           />
+
           <label htmlFor="email">Email Address</label>
           <input
             type="email"
             id="email"
             name="email"
             placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
+
           <button type="submit">Subscribe</button>
         </form>
+
+        {message && <p>{message}</p>}
 
         {/* Social media icons */}
         <div className="social-media-box">
@@ -79,8 +123,6 @@ const Footer = () => {
           <a href="#" className="social-icon"><i className="fab fa-x"></i></a>
         </div>
       </div>
-
-     
     </footer>
   );
 };

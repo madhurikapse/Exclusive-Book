@@ -1,5 +1,6 @@
 /* BookSlider.css */
 
+/* General Styles */
 .main-container {
   display: flex;
   justify-content: center;
@@ -116,3 +117,163 @@
   right: 10px;
 }
 
+/* Media Queries */
+
+/* Mobile View (up to 600px) */
+@media (max-width: 600px) {
+  .main-container {
+    padding: 10px;
+  }
+
+  .center-row {
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .left-side {
+    padding: 15px;
+  }
+
+  .slider-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .book-slider {
+    gap: 10px;
+    transform: translateY(0); /* Ensure only one item is visible */
+  }
+
+  .review-box {
+    width: 100%;
+    margin-bottom: 20px;
+    /* Ensure only one review box appears at a time */
+  }
+
+  .control {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  /* Mobile view adjustments */
+  .review-box {
+    width: 100%;
+    display: none; /* Hide all review boxes */
+  }
+
+  /* Only display the first review box in mobile view */
+  .review-box:first-child {
+    display: block;
+  }
+
+  /* Only show the title and review section */
+  .left-side h2,
+  .review-box {
+    display: block;
+  }
+
+  /* Hide unnecessary elements in mobile view */
+  .left-side .rating {
+    display: none;
+  }
+
+  .control {
+    display: none; /* Hide controls in mobile view */
+  }
+}
+
+/* Tablet View (601px to 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .main-container {
+    padding: 15px;
+  }
+
+  .center-row {
+    width: 90%;
+  }
+
+  .slider-container {
+    padding: 15px;
+  }
+
+  .review-box {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+
+  .control {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .book-slider {
+    gap: 15px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically on tablets */
+  }
+}
+
+/* Desktop View (769px and above) */
+@media (min-width: 769px) {
+  .main-container {
+    padding: 20px;
+  }
+
+  .center-row {
+    width: 80%;
+  }
+
+  .slider-container {
+    padding: 20px;
+  }
+
+  .review-box {
+    width: 30%;
+  }
+
+  .control {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+  }
+
+  .book-slider {
+    gap: 20px;
+    display: flex;
+    flex-direction: row; /* Stack items horizontally on desktop */
+  }
+}
+
+/* Large Desktop View (1200px and above) */
+@media (min-width: 1200px) {
+  .main-container {
+    padding: 40px;
+  }
+
+  .center-row {
+    width: 75%;
+  }
+
+  .slider-container {
+    padding: 25px;
+  }
+
+  .review-box {
+    width: 25%;
+  }
+
+  .control {
+    width: 50px;
+    height: 50px;
+    font-size: 26px;
+  }
+
+  .book-slider {
+    gap: 25px;
+    display: flex;
+    flex-direction: row;
+  }
+}

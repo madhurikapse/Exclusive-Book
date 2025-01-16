@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import BookCard from '../components/BookCard';
 
-const Home = () => {
-  const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    axios.get('https://api.example.com/books') // Replace with real API URL
-      .then(response => {
-        setBooks(response.data);
-      })
-      .catch(error => {
-        console.error("There was an error fetching the books!", error);
-      });
-  }, []);
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+function Home(){
+    const {state}=useContext(AuthContext);
 
-  return (
-    <div className="home">
-      <div className="book-list">
-        {books.map(book => (
-          <BookCard key={book.id} book={book} />
-        ))}
-      </div>
-    </div>
-  );
-};
+    return(
+        
+        <div id="home">
+            
+            <h1>Welcome to Event mangement- {state?.user?.name}</h1>
+           
+            
+        </div>
+    )
+}
 
 export default Home;

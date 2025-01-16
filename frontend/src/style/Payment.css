@@ -1,0 +1,107 @@
+/* Payment Methods Section */
+.footer-section.payment-methods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #c8dee2; /* Light background for contrast */
+    border-top: 1px solid #ddd; /* Divider for the section */
+  }
+  
+  .payment-methods-title {
+    font-size: 18px; /* Title font size */
+    font-weight: bold;
+    margin-bottom: 10px; /* Space below the title */
+    text-align: center;
+    color: #333; /* Darker text for visibility */
+  }
+  
+  .payment-methods-icons {
+    display: flex;
+    justify-content: center; /* Center the icons */
+    align-items: center; /* Vertically align icons */
+    gap: 120px; /* Space between icons */
+  }
+  
+  .payment-method-icon {
+    width: 85px; /* Icon size */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+  }
+  
+  .payment-method-icon:hover {
+    filter: grayscale(0%); /* Remove grayscale on hover */
+    transform: scale(1.1); /* Slightly scale up on hover */
+  }
+  
+  /* Mobile View (up to 600px) */
+  @media (max-width: 600px) {
+    .payment-methods-title {
+      font-size: 16px; /* Smaller title for mobile screens */
+      margin-bottom: 8px; /* Reduced margin */
+    }
+  
+    .payment-methods-icons {
+      flex-direction: row; /* Horizontal layout for mobile */
+      gap: 10px; /* Reduced space between icons */
+      overflow-x: auto; /* Enable horizontal scrolling for small screens */
+    }
+  
+    .payment-method-icon {
+      width: 40px; /* Smaller icon size for mobile */
+    }
+  }
+  
+  /* Tablet View (601px to 768px) */
+  @media (min-width: 601px) and (max-width: 768px) {
+    .payment-methods-title {
+      font-size: 17px; /* Slightly smaller title for tablet */
+      margin-bottom: 10px; /* Default margin */
+    }
+  
+    .payment-methods-icons {
+      flex-direction: row; /* Horizontal layout for tablets */
+      gap: 30px; /* Moderate space between icons */
+      overflow-x: auto; /* Enable horizontal scrolling for smaller tablets */
+    }
+  
+    .payment-method-icon {
+      width: 60px; /* Medium icon size for tablets */
+    }
+  }
+  
+  /* Desktop View (768px and above) */
+  @media (min-width: 768px) {
+    .payment-methods-title {
+      font-size: 20px; /* Larger title for desktop */
+      margin-bottom: 15px; /* More space for larger screens */
+    }
+  
+    .payment-methods-icons {
+      flex-direction: row; /* Horizontal layout for larger screens */
+      gap: 40px; /* More space between icons */
+      justify-content: center; /* Center icons */
+    }
+  
+    .payment-method-icon {
+      width: 85px; /* Default icon size for larger screens */
+    }
+  }
+  
+  /* Large Desktop View (1200px and above) */
+  @media (min-width: 1200px) {
+    .payment-methods-title {
+      font-size: 22px; /* Larger title for very large screens */
+      margin-bottom: 20px; /* More space for very large screens */
+    }
+  
+    .payment-methods-icons {
+      gap: 50px; /* Larger gap for very large screens */
+    }
+  
+    .payment-method-icon {
+      width: 100px; /* Larger icons for very large screens */
+    }
+  }
+  

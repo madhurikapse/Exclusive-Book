@@ -19,12 +19,13 @@ import BiographyBestsellers from './components/BiographyBestsellers';
 import TextSlider from './components/TextSlider';
 import ChildrenBestsellers from './components/Children\'sBestsellers';
 import Footer from './components/Footer';
+ import PaymentFooter from "./components/PaymentFooter"
+import Register from './pages/Register';
 function App() {
 
   const [wishlist, setWishlist] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   return (
-    <Router>
       <div className="App">
         
       
@@ -39,8 +40,11 @@ function App() {
       <TextSlider/>
       <ChildrenBestsellers  setCartItems={setCartItems}/>
       <Footer/>
+      <PaymentFooter/>
         <Routes>
           <Route path="/" element={<Home/>} />
+        <Route  path='/register' element={<Register/>}/>
+        <Route  path='/login' element={<LoginPage/>}/>
           <Route path="/book/:id" element={<BookDetailsPage/>} />
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/login" element={<LoginPage/>} />
@@ -55,7 +59,6 @@ function App() {
         <Route path="/cart" element={<Cart cartItems={cartItems} />} />
         </Routes>
       </div>
-    </Router>
   );
 }
 
