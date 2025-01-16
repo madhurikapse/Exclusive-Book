@@ -1,9 +1,8 @@
 
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt"
 import Task from "../models/task.model.js";
 import User from "../models/user.model.js";
-
+import jwt from "jsonwebtoken"
 export const Register = async (req, res) => {
     try {
       const { name, email, password } = req.body.userData;
@@ -84,7 +83,7 @@ export const Register = async (req, res) => {
   export const getCurrentUser = async (req, res) => {
     try {
       const token = req.cookies.token;
-      const data = await jwt.verify(token, process.env.JWT_SECRET);
+      const data =await jwt.verify(token, process.env.JWT_SECRET);
       console.log(data, "data");
       const user = await User.findById(data?.userId);
         if (!user) {
@@ -144,31 +143,7 @@ export const Register = async (req, res) => {
       return res.json({ error: error, success: false });
     }
   };
-  export const TicketBook = async (req, res) => {
-    try {
-      const {ticket} = req.body;
-      if (!ticket) {
-        return res.json({ success: false, error: "All fields are required." });
-      }
-      
-  
-      const newTicket = new Ticket({
-        ticket: ticket,
-        
-      });
-  
-      const responseFromDb = await newTicket.save();
-  
-      return res.json({
-        success: true,
-        message: "Ticket added Successfully.",
-      });
-    } catch (error) {
-      console.log(error, "error");
-      return res.json({ error: error, success: false });
-    }
-  };
-
+ 
   export const GetAllTasks = async (req,res) =>{
     try {
       const tasks = await Task.find({});
