@@ -1,10 +1,11 @@
-import express from "express";
-import dotenv from "dotenv";
-import AllRoutes from "./routes/index.js";
-import mongoose from "mongoose";
-import cors from "cors";
-import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import morgan from "morgan";
+import cors from "cors";
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import AllRoutes from "../Backend/routes/index.js"
+
 const app = express();
 app.use(cookieParser());
 app.use(morgan("combined"));
@@ -14,6 +15,8 @@ app.use(
     origin: ["http://localhost:3000"],
   })
 );
+
+
 dotenv.config();
 app.use(express.json());
 
@@ -22,11 +25,6 @@ app.get("/", function (req, res) {
 });
 
 app.use("/api/v1", AllRoutes);
-
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).send("Internal Server Error");
-});
 
 mongoose
   .connect(process.env.MONGODB_URL)

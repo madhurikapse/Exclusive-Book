@@ -9,7 +9,7 @@ function Home(){
         
         <div id="home">
             
-            <h1>Welcome to Event mangement- {state?.user?.name}</h1>
+            <h1>Welcome to E-Book - {state?.user?.name}</h1>
            
             
         </div>
