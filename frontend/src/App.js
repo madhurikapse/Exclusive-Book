@@ -50,7 +50,6 @@ function App() {
               <BiographyBestsellers />
               <TextSlider />
               <ChildrenBestsellers setCartItems={setCartItems} />
-              <PaymentFooter />
             </>
           }
         >
@@ -62,6 +61,7 @@ function App() {
         </Route>
       </Routes>
       <Footer />
+      <PaymentFooter />
     </Router>
   );
 }
