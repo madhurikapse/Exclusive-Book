@@ -36,7 +36,9 @@ function App() {
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<Forgetpass />} />
-
+        <Route path="/wishlist" element={<WishlistPage wishlist={wishlist} />} />
+        <Route path="cart" element={<Cart cartItems={cartItems} />} />
+          
         {/* Routes with Navbar and other components */}
         <Route
           path="/"
@@ -55,8 +57,7 @@ function App() {
         >
           {/* Nested Routes */}
           <Route index element={<Home />} />
-          <Route path="cart" element={<Cart cartItems={cartItems} />} />
-          <Route path="wishlist" element={<WishlistPage wishlist={wishlist} />} />
+
           <Route path="book/:id" element={<BookDetailsPage />} />
         </Route>
       </Routes>

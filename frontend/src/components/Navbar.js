@@ -33,11 +33,10 @@ const Navbar = ({ cartItems }) => {
   return (
     <>
       {/* Routes above Navbar */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
-      </Routes>
+      </Routes> */}
 
       {/* Navbar */}
       <nav className="navbar">
@@ -47,7 +46,7 @@ const Navbar = ({ cartItems }) => {
           </a>
           <span className="corporate-events">Corporate Events</span>
         </div>
-
+     
         <div className="navbar-right">
           <div className="nav-item">
             <Link to="/wishlist">
