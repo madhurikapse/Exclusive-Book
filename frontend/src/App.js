@@ -6,7 +6,7 @@ import BookDetailsPage from './components/BookDetailsPage';
 import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
 import WishlistPage from './pages/WishlistPage';
-import Forgetpass from "./pages/Forgetpass"
+import Forgetpass from "./pages/Forgetpass";
 import SignUpPage from './pages/SignUp';
 import Navbar2 from './components/Navbar2';
 import Navbar3 from './components/Navbar3';
@@ -19,46 +19,50 @@ import BiographyBestsellers from './components/BiographyBestsellers';
 import TextSlider from './components/TextSlider';
 import ChildrenBestsellers from './components/Children\'sBestsellers';
 import Footer from './components/Footer';
- import PaymentFooter from "./components/PaymentFooter"
+import PaymentFooter from "./components/PaymentFooter";
 import Register from './pages/Register';
-function App() {
 
+function App() {
   const [wishlist, setWishlist] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+
   return (
-      <div className="App">
-        
-      
+    <Router>
       <Navbar wishlist={wishlist} cartItems={cartItems} />
-      <Navbar2/>
-      <Navbar3/>
-      <Slider/>
-      <TopBooks setCartItems={setCartItems} />
-      <BookSlider/>
-      <NonFiction/>
-      <BiographyBestsellers/>
-      <TextSlider/>
-      <ChildrenBestsellers  setCartItems={setCartItems}/>
-      <Footer/>
-      <PaymentFooter/>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-        <Route  path='/register' element={<Register/>}/>
-        <Route  path='/login' element={<LoginPage/>}/>
-          <Route path="/book/:id" element={<BookDetailsPage/>} />
-          <Route path="/cart" element={<Cart/>}/>
-          <Route path="/login" element={<LoginPage/>} />
-        <Route path="/wishlist" element={<WishlistPage/>} />
-        <Route path="/forgot-password" element={<Forgetpass/>} />
-        <Route path="/sign-up" element={<SignUpPage/>} />
+      <Navbar2 />
+
+      <Routes>
+        {/* Routes without Navbar and other components */}
+        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/forgot-password" element={<Forgetpass />} />
+
+        {/* Routes with Navbar and other components */}
         <Route
           path="/"
-          element={<TopBooks setWishlist={setWishlist} setCartItems={setCartItems} />}
-        />
-        <Route path="/wishlist" element={<Wishlist wishlist={wishlist} />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
-        </Routes>
-      </div>
+          element={
+            <>
+              <Navbar3 />
+              <Slider />
+              <TopBooks setCartItems={setCartItems} />
+              <BookSlider />
+              <NonFiction />
+              <BiographyBestsellers />
+              <TextSlider />
+              <ChildrenBestsellers setCartItems={setCartItems} />
+              <PaymentFooter />
+            </>
+          }
+        >
+          {/* Nested Routes */}
+          <Route index element={<Home />} />
+          <Route path="cart" element={<Cart cartItems={cartItems} />} />
+          <Route path="wishlist" element={<WishlistPage wishlist={wishlist} />} />
+          <Route path="book/:id" element={<BookDetailsPage />} />
+        </Route>
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
