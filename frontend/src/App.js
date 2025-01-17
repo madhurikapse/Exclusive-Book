@@ -80,21 +80,8 @@ function App() {
         <Route path="/biography" element={<BiographyBestsellers setCartItems={setCartItems} />} />
         <Route path="/ChildrenBestsellers" element={<ChildrenBestsellers setCartItems={setCartItems} />} />
         <Route path="/book-details/:id" element={<BookDetails />} />
-        <Route
-          path="/"
-          element={
-            <>
-              <Navbar3 />
-              <Slider />
-              <TopBooks setCartItems={setCartItems} />
-              <BookSlider />
-              <NonFiction />
-              <BiographyBestsellers />
-              <TextSlider />
-              <ChildrenBestsellers setCartItems={setCartItems} />
-            </>
-          }
-        />
+       
+  
       </Routes>
     </Router>
   );
