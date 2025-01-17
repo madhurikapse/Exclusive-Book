@@ -1,0 +1,119 @@
+/* Footer Base Styles */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  padding: 20px 40px;
+  border-top: 2px solid #eaeaea;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 10px;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.footer-section:last-child {
+  border-right: none;
+}
+
+/* Section Headings */
+.footer-section h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.footer-section h2 .arrow {
+  font-size: 14px;
+  margin-left: 10px;
+  display: none;
+}
+
+/* Arrows only visible in mobile view */
+@media (max-width: 768px) {
+  .footer-section h2 .arrow {
+    display: inline-block;
+  }
+}
+
+/* Content Styles */
+.footer-content {
+  font-size: 14px;
+  color: #000;
+  display: none;
+  line-height: 1.6;
+}
+
+.footer-content.visible {
+  display: block;
+}
+
+.footer-content ul {
+  padding-left: 20px;
+  list-style-type: none;
+}
+
+.footer-content ul li {
+  margin-bottom: 5px;
+}
+
+/* Subscribe Section */
+.footer-section.expanded .footer-content {
+  display: block;
+}
+
+.subscribe-section .footer-content {
+  display: block;
+}
+
+.footer-input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.footer-button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.footer-button:hover {
+  background-color: #444;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .footer-section {
+    margin: 0;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .footer-section:last-child {
+    border-bottom: none;
+  }
+}

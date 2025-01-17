@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa'; 
 import CompanyLogo1 from '../components/CompanyLogo1.jpg';
 import '../style/Style.css';
@@ -13,6 +13,7 @@ import Home from '../pages/Home'; // Home Component (optional)
 const Navbar = ({ cartItems }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const navigate = useNavigate(); // Hook for programmatic navigation
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,15 +26,17 @@ const Navbar = ({ cartItems }) => {
   const closeLoginModal = () => {
     setIsLoginModalOpen(false);
   };
+  const handleSignUpNavigation = () => {
+    navigate('/sign-up');
+  };
 
   return (
     <>
       {/* Routes above Navbar */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
-      </Routes>
+      </Routes> */}
 
       {/* Navbar */}
       <nav className="navbar">
@@ -43,7 +46,7 @@ const Navbar = ({ cartItems }) => {
           </a>
           <span className="corporate-events">Corporate Events</span>
         </div>
-
+     
         <div className="navbar-right">
           <div className="nav-item">
             <Link to="/wishlist">
@@ -124,7 +127,7 @@ const Navbar = ({ cartItems }) => {
                 </div>
               </form>
               <div className="signup-prompt">
-                <p>Don't have an account? <Link to="/sign-up">Create one</Link></p>
+                <p>Don't have an account? <span onClick={handleSignUpNavigation} style={{ cursor: 'pointer', color: 'blue' }}>Create one</span></p>
               </div>
             </div>
           </div>
