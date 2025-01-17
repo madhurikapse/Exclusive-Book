@@ -1,11 +1,12 @@
 // src/pages/SignUpPage.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,6 +14,8 @@ const SignUpPage = () => {
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
+
+    navigate('/welcome');
   };
 
   return (
@@ -57,12 +60,12 @@ const SignUpPage = () => {
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn-signup">Sign Up</button>
+            <button type="submit" className="btn-signup">LoginPage</button>
           </div>
         </form>
 
         <div className="login-prompt">
-          <p>Already have an account? <Link to="/sign-in">Sign In</Link></p>
+          <p>Already have an account? <Link to="/LoginPage">Login</Link></p>
         </div>
       </div>
     </div>
