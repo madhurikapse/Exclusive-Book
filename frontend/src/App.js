@@ -5,74 +5,81 @@ import BookDetailsPage from './components/BookDetailsPage';
 import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
 import WishlistPage from './pages/WishlistPage';
-<<<<<<< HEAD
-import Forgetpass from "./pages/Forgetpass"
-import SignUp from './pages/SignUp';
-=======
 import Forgetpass from "./pages/Forgetpass";
-import SignUpPage from './pages/SignUp';
->>>>>>> 903b32b0d8fec063d008c07f917bd262d8f21209
+import SignUp from './pages/SignUp';
 import Navbar2 from './components/Navbar2';
 import Navbar3 from './components/Navbar3';
 import Slider from './components/Slider';
 import TopBooks from './components/TopBook';
-import Wishlist from './components/Wishlist';
 import BookSlider from './components/BookSlider';
 import NonFiction from './components/NonFiction';
 import BiographyBestsellers from './components/BiographyBestsellers';
 import TextSlider from './components/TextSlider';
-import ChildrenBestsellers from './components/Children\'sBestsellers';
+import ChildrenBestsellers from './components/ChildrenBestsellers';
 import Footer from './components/Footer';
 import PaymentFooter from "./components/PaymentFooter";
 import Register from './pages/Register';
-<<<<<<< HEAD
 import WelcomePage from './pages/Welcome';
-function App() {
-=======
->>>>>>> 903b32b0d8fec063d008c07f917bd262d8f21209
+import BookDetails from './components/BookDetailsPage';
 
 function App() {
-  const [wishlist, setWishlist] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+
+  // Function to add book to wishlist and cart
+  const handleBookClick = (book) => {
+    // Add to wishlist
+    setWishlistItems((prevWishlist) => {
+      if (!prevWishlist.find((item) => item.id === book.id)) {
+        return [...prevWishlist, book];
+      }
+      return prevWishlist;
+    });
+
+    // Add to cart
+    setCartItems((prevCart) => {
+      if (!prevCart.find((item) => item.id === book.id)) {
+        return [...prevCart, book];
+      }
+      return prevCart;
+    });
+  };
 
   return (
     <Router>
-      <Navbar wishlist={wishlist} cartItems={cartItems} />
-<<<<<<< HEAD
-      <Navbar2/>
-      <Navbar3/>
-      <Slider/>
-      <TopBooks setCartItems={setCartItems} />
-      <BookSlider/>
-      <NonFiction/>
-      <BiographyBestsellers/>
-      <TextSlider/>
-      <ChildrenBestsellers  setCartItems={setCartItems}/>
-      <Footer/>
-      <PaymentFooter/>
-        <Routes>
-        <Route  path='/register' element={<Register/>}/>
-        <Route  path='/login' element={<LoginPage/>}/>
-        <Route path='/welcome' element={<WelcomePage/>}/>
-          <Route path="/book/:id" element={<BookDetailsPage/>} />
-          <Route path="/cart" element={<Cart/>}/>
-          <Route path="/login" element={<LoginPage/>} />
-        <Route path="/wishlist" element={<WishlistPage/>} />
-        <Route path="/forgotpassword" element={<Forgetpass/>} />
-        <Route path="/sign-up" element={<SignUp/>} />
-=======
+      <Navbar wishlist={wishlistItems} cartItems={cartItems} />
       <Navbar2 />
-
+      <Navbar3 />
+      <Slider />
+      <TopBooks
+        setCartItems={setCartItems}
+        setWishlistItems={setWishlistItems}
+        handleBookClick={handleBookClick} // Pass the click handler
+      />
+      <BookSlider />
+      <NonFiction />
+      <BiographyBestsellers />
+      <TextSlider />
+      <ChildrenBestsellers 
+        setCartItems={setCartItems} 
+        setWishlistItems={setWishlistItems} 
+        handleBookClick={handleBookClick} // Pass the click handler
+      />
+      <Footer />
+      <PaymentFooter />
       <Routes>
-        {/* Routes without Navbar and other components */}
-        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/forgot-password" element={<Forgetpass />} />
-        <Route path="/wishlist" element={<WishlistPage wishlist={wishlist} />} />
-        <Route path="cart" element={<Cart cartItems={cartItems} />} />
-          
-        {/* Routes with Navbar and other components */}
->>>>>>> 903b32b0d8fec063d008c07f917bd262d8f21209
+        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/book/:id" element={<BookDetailsPage />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+        <Route path="/wishlist" element={<WishlistPage wishlist={wishlistItems} setWishlistItems={setWishlistItems} />} />
+        <Route path="/forgotpassword" element={<Forgetpass />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/TopBook" element={<TopBooks setCartItems={setCartItems} />} />
+        <Route path="/biography" element={<BiographyBestsellers setCartItems={setCartItems} />} />
+        <Route path="/ChildrenBestsellers" element={<ChildrenBestsellers setCartItems={setCartItems} />} />
+        <Route path="/book-details/:id" element={<BookDetails />} />
         <Route
           path="/"
           element={
@@ -87,15 +94,8 @@ function App() {
               <ChildrenBestsellers setCartItems={setCartItems} />
             </>
           }
-        >
-          {/* Nested Routes */}
-          <Route index element={<Home />} />
-
-          <Route path="book/:id" element={<BookDetailsPage />} />
-        </Route>
+        />
       </Routes>
-      <Footer />
-      <PaymentFooter />
     </Router>
   );
 }

@@ -1,0 +1,19 @@
+.wishlist-item-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .wishlist-item-image {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .wishlist-item-details {
+    flex-grow: 1;
+  }
+  
+  .go-to-cart-btn {
+    margin-top: 20px;
+  }
+  

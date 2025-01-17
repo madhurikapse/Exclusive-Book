@@ -1,0 +1,35 @@
+.book-details-page {
+    padding: 20px;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .book-details-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .book-details-image {
+    max-width: 300px;
+    height: auto;
+  }
+  
+  .book-details-info {
+    max-width: 600px;
+  }
+  
+  .book-details-info h2 {
+    margin-top: 0;
+  }
+  
+  .book-details-info p {
+    margin: 10px 0;
+  }
+  
