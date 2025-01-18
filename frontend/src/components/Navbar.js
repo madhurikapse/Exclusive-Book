@@ -109,7 +109,7 @@ const Navbar = ({ cartItems }) => {
           <div className="login-modal">
             <div className="login-modal-content">
               <button className="close-btn" onClick={closeLoginModal}>X</button>
-              <h3>Login</h3>
+              <h3>Login,kapse</h3>
               <form>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>

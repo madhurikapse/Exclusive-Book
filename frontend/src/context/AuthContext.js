@@ -21,6 +21,7 @@ const initialstate = {
 export const AuthContext=createContext()
 
 function MyContextProvider({children}){
+  alert("page found")
     const[state,dispatch]=useReducer(reducer, initialstate)
 
     async function getCurrentUser() {

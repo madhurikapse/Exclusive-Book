@@ -5,8 +5,8 @@ import Api from '../AxiosConfig';
 import "../style/Login.css";
 import { AuthContext } from '../context/AuthContext';
 
-const Login = () => {
-  const { state, dispatch } = useContext(AuthContext);
+ const Login = () => {
+const { state, dispatch } = useContext(AuthContext);
   const router = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
@@ -20,6 +20,7 @@ const Login = () => {
   }
 
   async function handleSubmit(e) {
+    console.log(23)
     e.preventDefault();
     try {
       if (userData.email && userData.password) {
@@ -47,7 +48,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1>Login,Madhuri</h1>
         <label>Email:</label><br />
         <input type="email" name="email" onChange={handleChange} value={userData.email} /><br />
         <label>Password:</label><br />

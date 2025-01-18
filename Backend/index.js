@@ -5,7 +5,6 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import AllRoutes from "../Backend/routes/index.js"
-
 const app = express();
 app.use(cookieParser());
 app.use(morgan("combined"));

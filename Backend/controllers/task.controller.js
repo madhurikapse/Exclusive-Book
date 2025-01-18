@@ -83,7 +83,8 @@ export const Register = async (req, res) => {
   export const getCurrentUser = async (req, res) => {
     try {
       const token = req.cookies.token;
-      const data =await jwt.verify(token, process.env.JWT_SECRET);
+      console.log(token,process.env.JWT_SECRET)
+      const data = await jwt.verify(token, process.env.JWT_SECRET);
       console.log(data, "data");
       const user = await User.findById(data?.userId);
         if (!user) {
@@ -96,6 +97,7 @@ export const Register = async (req, res) => {
         };
         return res.json({ success: true, userData });
     } catch (error) {
+      console.log(error)
       return res.json({ success: false, error });
     }
   };

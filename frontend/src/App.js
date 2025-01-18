@@ -47,7 +47,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar wishlist={wishlistItems} cartItems={cartItems} />
+      {/* <Navbar wishlist={wishlistItems} cartItems={cartItems} />
       <Navbar2 />
       <Navbar3 />
       <Slider />
@@ -65,9 +65,10 @@ function App() {
         setWishlistItems={setWishlistItems} 
         handleBookClick={handleBookClick} // Pass the click handler
       />
-      <Footer />
-      <PaymentFooter />
+      <Footer/>
+      <PaymentFooter/> */}
       <Routes>
+        
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/welcome" element={<WelcomePage />} />
@@ -80,8 +81,6 @@ function App() {
         <Route path="/biography" element={<BiographyBestsellers setCartItems={setCartItems} />} />
         <Route path="/ChildrenBestsellers" element={<ChildrenBestsellers setCartItems={setCartItems} />} />
         <Route path="/book-details/:id" element={<BookDetails />} />
-       
-  
       </Routes>
     </Router>
   );
