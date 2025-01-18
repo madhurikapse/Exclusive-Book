@@ -8,7 +8,7 @@ import book3 from '../assets/img/book3.jpg';
 import book4 from '../assets/img/book4.jpg';
 import book5 from '../assets/img/book5.jpg';
 
-const TopBooks = ({ setCartItems, setWishlistItems }) => {
+const TopBooks = ({ setCart, setWishlistItems }) => {
   const books = [
     { id: 1, image: book1, title: 'Book 1', author: 'Author 1', rating: 4, price: '₹350', description: 'This is Book 1' },
     { id: 2, image: book2, title: 'Book 2', author: 'Author 2', rating: 5, price: '₹499', description: 'This is Book 2' },
@@ -28,7 +28,7 @@ const TopBooks = ({ setCartItems, setWishlistItems }) => {
       return prevWishlist;
     });
 
-    setCartItems((prevCart) => {
+    setCart((prevCart) => {
       if (!prevCart.find((item) => item.id === book.id)) {
         return [...prevCart, book];
       }

@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Api from '../AxiosConfig';
 import "../style/Login.css";
 import { AuthContext } from '../context/AuthContext';
-
+import "../style/LoginPage.css"
  const Login = () => {
 const { state, dispatch } = useContext(AuthContext);
   const router = useNavigate();
@@ -46,7 +46,7 @@ const { state, dispatch } = useContext(AuthContext);
   }
 
   return (
-    <div className="login-page">
+    <div className="contain">
       <form onSubmit={handleSubmit}>
         <h1>Login,Madhuri</h1>
         <label>Email:</label><br />
@@ -57,7 +57,7 @@ const { state, dispatch } = useContext(AuthContext);
       </form>
       <div className="sign-up-prompt">
         <p>
-          Don't have an account? <Link to="/NewPage">Create one</Link>
+          Don't have an account? <Link to="/Sign-up">Create one</Link>
         </p>
       </div>
     </div>

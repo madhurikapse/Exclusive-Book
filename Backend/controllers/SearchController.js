@@ -1,21 +1,26 @@
-import Product from '../models/Product.js';
+import Product from "../models/Product.js";
 
-export const searchProducts = async (req, res) => {
+
+export const search = async (req, res) => {
     try {
-        const { query } = req.query; 
-        if (!query) {
-            return res.status(400).json({ message: 'Query parameter is required.' });
+        const { searchedWord } = req.body;
+
+        if (!searchedWord) {
+            return res.status(400).json({ success: false, message: 'Search term is required.' });
         }
 
-        const results = await Product.find({
+        // Search products by name, category, or tags
+        const products = await Product.find({
             $or: [
-                { name: { $regex: query, $options: 'i' } }, 
-                { category: { $regex: query, $options: 'i' } }, 
+                { name: { $regex: searchedWord, $options: 'i' } },
+                { category: { $regex: searchedWord, $options: 'i' } },
+                { tags: { $regex: searchedWord, $options: 'i' } },
             ],
         });
 
-        res.json(results);
+        return res.status(200).json({ success: true, products });
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching search results', error });
+        console.error('Error in search:', error);
+        return res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 };

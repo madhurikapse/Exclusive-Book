@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // For making API calls
+import axios from 'axios';
 import '../style/Navbar2.css';
 import { FaSearch } from 'react-icons/fa';
-import CompanyLogo1 from '../components/CompanyLogo1.jpg'; // Adjust path if necessary
+import CompanyLogo1 from '../components/CompanyLogo1.jpg'; // Adjust the path if necessary
 
 const Navbar2 = () => {
     const [query, setQuery] = useState('');
@@ -10,12 +10,14 @@ const Navbar2 = () => {
     const [isSearching, setIsSearching] = useState(false);
 
     const handleSearch = async () => {
-        if (!query) return;
+        if (!query.trim()) return;
         setIsSearching(true);
 
         try {
-            const response = await axios.get(`/api/search?query=${query}`);
-            setResults(response.data);
+            const response = await axios.post('http://localhost:5000/search', {
+                searchedWord: query,
+            });
+            setResults(response.data.products || []);
         } catch (error) {
             console.error('Error fetching search results:', error);
         } finally {
@@ -40,7 +42,6 @@ const Navbar2 = () => {
                     }}
                 />
             </div>
-            {/* Display Search Results */}
             {results.length > 0 && (
                 <div className="search-results">
                     <ul>

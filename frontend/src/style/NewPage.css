@@ -1,0 +1,169 @@
+.new-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f1b0cb, #96c8e7);
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #4d2fd0;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+  
+  p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #ff758c;
+    box-shadow: 0 0 4px rgba(255, 117, 140, 0.5);
+  }
+  
+  .btn-create {
+    background: #ff758c;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-create:hover {
+    background: #e3b5be;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .new-page {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 26px;
+    }
+  
+    .btn-create {
+      max-width: 380px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .new-page {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  
+    p {
+      font-size: 14px;
+    }
+  
+    .form-group {
+      max-width: 360px;
+    }
+  
+    .btn-create {
+      padding: 10px 18px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .new-page {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 22px;
+    }
+  
+    .form-group {
+      max-width: 320px;
+    }
+  
+    .btn-create {
+      padding: 10px 16px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .new-page {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  
+    p {
+      font-size: 12px;
+    }
+  
+    .form-group {
+      max-width: 280px;
+    }
+  
+    .btn-create {
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .new-page {
+      padding: 8px;
+    }
+  
+    h1 {
+      font-size: 18px;
+    }
+  
+    p {
+      font-size: 12px;
+    }
+  
+    .form-group {
+      max-width: 250px;
+    }
+  
+    .btn-create {
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+  }
+  

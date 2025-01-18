@@ -8,7 +8,7 @@ import Child2 from '../assets/img/Child2.jpg';
 import Child3 from '../assets/img/Child3.jpg';
 import Child4 from '../assets/img/Child4.jpg';
 
-const ChildrenBestsellers = ({ setCartItems }) => {
+const ChildrenBestsellers = ({ setCart, setWishlistItems }) => {
   const books = [
     { id: 1, image: book2, title: 'Book 2', author: 'Author 2', rating: 4, price: '₹350', description: 'This is Book 2.' },
     { id: 2, image: Child1, title: 'Child 2', author: 'Author 7', rating: 5, price: '₹499', description: 'This is Child 2.' },
@@ -19,18 +19,38 @@ const ChildrenBestsellers = ({ setCartItems }) => {
 
   const navigate = useNavigate();
 
+  // Handle click on book: add to wishlist, cart, and navigate to details page
   const handleBookClick = (book) => {
-    navigate(`/book-details/${book.id}`, { state: book });
-  };
+    setWishlistItems((prevWishlist) => {
+      if (!prevWishlist.find((item) => item.id === book.id)) {
+        return [...prevWishlist, book];
+      }
+      return prevWishlist;
+    });
 
-  const handleAddToCart = (book, event) => {
-    event.stopPropagation(); // Prevent navigation when clicking the heart icon
-    setCartItems((prevCart) => {
+    setCart((prevCart) => {
       if (!prevCart.find((item) => item.id === book.id)) {
         return [...prevCart, book];
       }
       return prevCart;
     });
+
+    // Navigate to book details page
+    navigate(`/book-details/${book.id}`, { state: book });
+  };
+
+  // Handle adding to cart when clicking the heart icon
+  const handleAddToCart = (book, event) => {
+    event.stopPropagation(); // Prevent navigation when clicking the heart icon
+    setCart((prevCart) => {
+      if (!prevCart.find((item) => item.id === book.id)) {
+        return [...prevCart, book];
+      }
+      return prevCart;
+    });
+
+    // Navigate to book details page after adding to cart
+    navigate(`/book-details/${book.id}`, { state: book });
   };
 
   return (
@@ -48,7 +68,7 @@ const ChildrenBestsellers = ({ setCartItems }) => {
               <img src={book.image} alt={book.title} className="book-image" />
               <div
                 className="heart"
-                onClick={(e) => handleAddToCart(book, e)}
+                onClick={(e) => handleAddToCart(book, e)} // Add to cart and navigate to details page
               >
                 ❤️
               </div>

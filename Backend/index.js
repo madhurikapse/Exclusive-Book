@@ -5,6 +5,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import AllRoutes from "../Backend/routes/index.js"
+
+import searchRoutes from './routes/Searhroutes.js';
 const app = express();
 app.use(cookieParser());
 app.use(morgan("combined"));
@@ -24,6 +26,8 @@ app.get("/", function (req, res) {
 });
 
 app.use("/api/v1", AllRoutes);
+
+app.use('/', searchRoutes);
 
 mongoose
   .connect(process.env.MONGODB_URL)
