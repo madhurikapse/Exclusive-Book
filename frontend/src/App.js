@@ -74,8 +74,8 @@ function App() {
                 setWishlistItems={setWishlistItems}
                 handleBookClick={handleBookClick} // Pass the click handler
               />
-              <Footer />
-              <PaymentFooter />
+              <Footer/>
+              <PaymentFooter/>
             </>
           }
         />

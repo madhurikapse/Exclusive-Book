@@ -10,21 +10,27 @@ const Navbar2 = () => {
     const [isSearching, setIsSearching] = useState(false);
 
     const handleSearch = async () => {
-        if (!query.trim()) return;
+        if (!query.trim()) {
+            console.error('Search term is empty');
+            return;
+        }
+    
         setIsSearching(true);
-
         try {
-            const response = await axios.post('http://localhost:5000/search', {
+            const response = await axios.post('http://localhost:5000/api/v1/search1', {
                 searchedWord: query,
             });
+            console.log('API Response:', response.data);
             setResults(response.data.products || []);
         } catch (error) {
-            console.error('Error fetching search results:', error);
+            console.error('Axios Error:', error.response?.data || error.message);
         } finally {
             setIsSearching(false);
         }
     };
-
+    
+       
+         
     return (
         <div className="navbar2">
             <a href="#" className="logo">

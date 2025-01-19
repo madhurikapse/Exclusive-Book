@@ -5,7 +5,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import AllRoutes from "../Backend/routes/index.js"
-
+import subscribeRoutes from "./routes/subscribeRoutes.js";
 import searchRoutes from './routes/Searhroutes.js';
 const app = express();
 app.use(cookieParser());
@@ -26,8 +26,8 @@ app.get("/", function (req, res) {
 });
 
 app.use("/api/v1", AllRoutes);
-
-app.use('/', searchRoutes);
+app.use('/api/v1', searchRoutes);
+app.use("/api/v1", subscribeRoutes);
 
 mongoose
   .connect(process.env.MONGODB_URL)

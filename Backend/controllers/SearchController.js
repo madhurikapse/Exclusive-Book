@@ -1,15 +1,13 @@
-import Product from "../models/Product.js";
-
-
 export const search = async (req, res) => {
     try {
+        
         const { searchedWord } = req.body;
-
-        if (!searchedWord) {
-            return res.status(400).json({ success: false, message: 'Search term is required.' });
+        if (!searchedWord || typeof searchedWord !== 'string') {
+            return res.status(400).json({ success: false, message: 'Invalid search term.' });
         }
+        
+        console.log('Searched Word:', searchedWord);
 
-        // Search products by name, category, or tags
         const products = await Product.find({
             $or: [
                 { name: { $regex: searchedWord, $options: 'i' } },
@@ -18,6 +16,7 @@ export const search = async (req, res) => {
             ],
         });
 
+        console.log('Products Found:', products);
         return res.status(200).json({ success: true, products });
     } catch (error) {
         console.error('Error in search:', error);

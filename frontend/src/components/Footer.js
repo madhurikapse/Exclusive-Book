@@ -19,7 +19,7 @@ const Footer = () => {
 
     try {
       // Send POST request to the backend to handle subscription
-      const response = await axios.post('http://localhost:5000/api/subscribe', {
+      const response = await axios.post('http://localhost:5000/api/v1/subscribe', {
         firstName,
         email,
       });
