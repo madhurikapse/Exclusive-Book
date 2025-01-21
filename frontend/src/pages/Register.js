@@ -111,7 +111,7 @@ const Register = () => {
         <input disabled={disable} type="submit" value="Register" />
         <br />
       </form>
-      <button onClick={() => router("/login")}>Login ?</button>
+      <button onClick={() => router("/LoginPage")}>Login ?</button>
     </div>
   );
 };

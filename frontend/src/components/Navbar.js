@@ -159,14 +159,12 @@ const Navbar = ({ cartItems }) => {
                   />
                 </div>
                 <div className="form-actions">
-                  <Link to="/Register" className="forgot-password">
-                    Register
-                  </Link>
+                  
                   <button type="submit" className="btn-login">Sign In</button>
                 </div>
               </form>
               <div className="signup-prompt">
-                <p>Don't have an account? <span onClick={() => navigate("/sign-up")} style={{ cursor: "pointer", color: "blue" }}>Create one</span></p>
+                <p>Don't have an account? <span onClick={() => navigate("/Register")} style={{ cursor: "pointer", color: "blue" }}>register one</span></p>
               </div>
             </div>
           </div>

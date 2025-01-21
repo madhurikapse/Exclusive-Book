@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
 import Api from "../AxiosConfig";
-
+import "../style/Login.css"
 const Login = () => {
   const { state, dispatch } = useContext(AuthContext);
 
@@ -59,7 +59,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         <label>Email : </label>
@@ -83,7 +83,6 @@ const Login = () => {
         <input type="submit" value="Login" />
         <br />
       </form>
-      <button onClick={() => router("/register")}>Register ?</button>
     </div>
   );
 };

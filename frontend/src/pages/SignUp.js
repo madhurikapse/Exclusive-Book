@@ -1,7 +1,7 @@
 // src/pages/SignUpPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import "../style/Login.css"
+import "../style/Sign.css"
 const SignUpPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="signupcontainer">
+    <div className="signup">
       <div className="sign-up-container">
         <h2>Create an Account</h2>
         <form onSubmit={handleSubmit}>
