@@ -24,7 +24,7 @@ const { state, dispatch } = useContext(AuthContext);
     e.preventDefault();
     try {
       if (userData.email && userData.password) {
-        const response = await Api.post("/auth/login", { userData });
+        const response = await Api.post("/auth/login",{ userData });
         if (response.data.success) {
           dispatch({ type: "LOGIN", payload: response.data.userData });
           setUserData({

@@ -1,3 +1,5 @@
+import Product from "../models/Product";
+
 export const search = async (req, res) => {
     try {
         
