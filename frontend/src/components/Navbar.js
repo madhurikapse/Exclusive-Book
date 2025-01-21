@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa'; 
-import CompanyLogo1 from '../components/CompanyLogo1.jpg';
-import '../style/Style.css';
+// Navbar.js
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { AuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast";
+import Api from "../AxiosConfig";
+import CompanyLogo1 from "../components/CompanyLogo1.jpg";
+import "../style/Style.css";
 import "../style/Sign.css";
-
-// Import page components
-import Wishlist from '../pages/WishlistPage'; // Wishlist Component
-import Cart from '../pages/Cart'; // Cart Component
-import Home from '../pages/Home'; // Home Component (optional)
 
 const Navbar = ({ cartItems }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const navigate = useNavigate(); // Hook for programmatic navigation
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -26,27 +30,46 @@ const Navbar = ({ cartItems }) => {
   const closeLoginModal = () => {
     setIsLoginModalOpen(false);
   };
-  const handleSignUpNavigation = () => {
-    navigate('/sign-up');
+
+  const handleChange = (event) => {
+    setUserData({ ...userData, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (userData.email && userData.password) {
+        const response = await Api.post("/auth/login",{ userData });
+        if (response.data.success) {
+          dispatch({ type: "LOGIN", payload: response.data.userData });
+          setUserData({
+            email: "",
+            password: "",
+          });
+          closeLoginModal();
+          navigate("/");
+          toast.success(response.data.message);
+        } else {
+          toast.error(response?.data?.error);
+        }
+      } else {
+        toast.error("All fields are mandatory.");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.error || "Login failed. Please try again.");
+    }
   };
 
   return (
     <>
-      {/* Routes above Navbar */}
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes> */}
-
-      {/* Navbar */}
       <nav className="navbar">
         <div className="navbar-left">
-          <a href="#" className="logo">
+          <Link to="/" className="logo">
             <img src={CompanyLogo1} alt="Company Logo" />
-          </a>
+          </Link>
           <span className="corporate-events">Corporate Events</span>
         </div>
-     
+
         <div className="navbar-right">
           <div className="nav-item">
             <Link to="/wishlist">
@@ -57,7 +80,7 @@ const Navbar = ({ cartItems }) => {
           <div className="nav-item">
             <Link to="/cart">
               <FaShoppingCart size={20} />
-              <span className="nav-text">Cart: {cartItems.length}</span> {/* Display cart count */}
+              <span className="nav-text">Cart: {cartItems.length}</span>
             </Link>
           </div>
           <div className="nav-item">
@@ -89,7 +112,7 @@ const Navbar = ({ cartItems }) => {
           </button>
         </div>
 
-        <div className={`side-menu ${isMenuOpen ? 'show' : ''}`}>
+        <div className={`side-menu ${isMenuOpen ? "show" : ""}`}>
           <button className="close-side-menu" onClick={toggleMenu}>
             <FaTimes size={24} color="white" />
           </button>
@@ -109,25 +132,41 @@ const Navbar = ({ cartItems }) => {
           <div className="login-modal">
             <div className="login-modal-content">
               <button className="close-btn" onClick={closeLoginModal}>X</button>
-              <h3>Login,kapse</h3>
-              <form>
+              <h3>Login</h3>
+              <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
-                  <input type="email" id="email" placeholder="Enter your email" required />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={userData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email"
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
-                  <input type="password" id="password" placeholder="Enter your password" required />
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={userData.password}
+                    onChange={handleChange}
+                    placeholder="Enter your password"
+                    required
+                  />
                 </div>
                 <div className="form-actions">
-                  <Link to="/forgot-password" className="forgot-password">
-                    Forgot your password?
+                  <Link to="/Register" className="forgot-password">
+                    Register
                   </Link>
                   <button type="submit" className="btn-login">Sign In</button>
                 </div>
               </form>
               <div className="signup-prompt">
-                <p>Don't have an account? <span onClick={handleSignUpNavigation} style={{ cursor: 'pointer', color: 'blue' }}>Create one</span></p>
+                <p>Don't have an account? <span onClick={() => navigate("/sign-up")} style={{ cursor: "pointer", color: "blue" }}>Create one</span></p>
               </div>
             </div>
           </div>
