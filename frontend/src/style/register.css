@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://t3.ftcdn.net/jpg/09/32/75/76/360_F_932757623_YnwWueTG2Kp55gYnIBsJkugiI2ZN8HUs.jpg'); /* Dynamic image URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(244, 224, 224, 0.9); /* Slightly transparent background */
+    border: 1px solid gray;
+    height: 400px;
+    width: 600px;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Media Queries */
+  
+  /* Extra Small Devices (phones, less than 600px) */
+  @media (max-width: 599px) {
+    .container {
+      width: 90%;
+      height: auto;
+      padding: 20px;
+    }
+  
+    button {
+      width: 100%;
+      font-size: 14px;
+    }
+  }
+  
+  /* Small Devices (portrait tablets and large phones, 600px and up) */
+  @media (min-width: 600px) and (max-width: 767px) {
+    .container {
+      width: 85%;
+      height: auto;
+      padding: 20px;
+    }
+  
+    button {
+      width: 100%;
+      font-size: 15px;
+    }
+  }
+  
+  /* Medium Devices (landscape tablets, 768px and up) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+      width: 75%;
+      height: auto;
+      padding: 30px;
+    }
+  
+    button {
+      width: auto;
+      padding: 12px 24px;
+      font-size: 16px;
+    }
+  }
+  
+  /* Large Devices (laptops/desktops, 1024px and up) */
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    .container {
+      width: 70%;
+      height: 400px;
+    }
+  
+    button {
+      padding: 14px 28px;
+      font-size: 17px;
+    }
+  }
+  
+  /* Extra Large Devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .container {
+      width: 600px;
+      height: 400px;
+    }
+  
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+    }
+  }
+  

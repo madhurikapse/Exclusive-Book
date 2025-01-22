@@ -59,7 +59,7 @@ const Login = () => {
   }
 
   return (
-    <div className="">
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         <label>Email : </label>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Api from "../AxiosConfig";
-
+import "../style/register.css"
 const Register = () => {
   const router = useNavigate();
   const [userData, setUserData] = useState({
@@ -71,7 +71,7 @@ const Register = () => {
   }, [userData]);
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <h1>Register</h1>
         <label>Name : </label>
