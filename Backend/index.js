@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import AllRoutes from "../Backend/routes/index.js"
 import subscribeRoutes from "./routes/subscribeRoutes.js";
 import searchRoutes from './routes/Searhroutes.js';
+import AuthRoutes from "./routes/AuthRoutes.js";
 const app = express();
 app.use(cookieParser());
 app.use(morgan("combined"));
@@ -28,6 +29,7 @@ app.get("/", function (req, res) {
 app.use("/api/v1", AllRoutes);
 app.use('/api/v1', searchRoutes);
 app.use("/api/v1", subscribeRoutes);
+app.use('/auth',AuthRoutes)
 
 mongoose
   .connect(process.env.MONGODB_URL)
