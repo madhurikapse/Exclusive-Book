@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../style/Navbar2.css';
 import { FaSearch } from 'react-icons/fa';
 import CompanyLogo1 from '../components/CompanyLogo1.jpg'; // Adjust the path if necessary
+import Api from '../AxiosConfig';
 
 const Navbar2 = () => {
     const [query, setQuery] = useState('');
@@ -16,18 +17,20 @@ const Navbar2 = () => {
         }
     
         setIsSearching(true);
+        console.log('Sending search query:', query);
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/search1', {
+            const response = await Api.post('/product/search', {
                 searchedWord: query,
             });
             console.log('API Response:', response.data);
             setResults(response.data.products || []);
         } catch (error) {
-            console.error('Axios Error:', error.response?.data || error.message);
+            console.error('Search failed:', error.response?.data || error.message);
         } finally {
             setIsSearching(false);
         }
     };
+    
     
        
          
