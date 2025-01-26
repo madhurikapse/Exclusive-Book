@@ -1,7 +1,7 @@
 /* Basic Styling */
-.navbar {
+.navbar2 {
     position: relative;
-    background-color: #ffffff;
+    background-color: #7cd4e4;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
@@ -14,10 +14,13 @@
     display: flex;
     align-items: center;
     border: 1px solid #e2e8f0;
-    border-radius: 5px;
+    background-color: burlywood;
+    border-radius: 25px;
     padding: 8px;
+    margin: auto;
     position: relative;
-    width: 100%;
+    width: 70%;
+    margin-bottom: 40px;
   }
   
   .search-container input {
@@ -29,7 +32,9 @@
   }
   
   .search-container input::placeholder {
-    color: #a0aec0;
+    color: #01050b;
+    background-color:burlywood;
+    border-radius: 25px;
   }
   
   .search-container .cursor-pointer {
@@ -43,7 +48,7 @@
     top: 50px;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background-color: #1997e0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-height: 300px;
     overflow-y: auto;
@@ -66,7 +71,7 @@
   }
   
   .search-results li:hover {
-    background-color: #f1f5f9;
+    background-color: wheat;
   }
   
   .loading {

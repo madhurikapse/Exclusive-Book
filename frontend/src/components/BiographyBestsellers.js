@@ -10,11 +10,11 @@ import book10 from '../assets/img/book10.jpg';
 
 const BiographyBestsellers = ({ setCart, setWishlistItems }) => {
   const books = [
-    { id: 6, image: book6, title: 'Book 6', author: 'Author 6', rating: 4, price: '₹350', description: 'This is Book 6' },
-    { id: 7, image: book7, title: 'Book 7', author: 'Author 7', rating: 5, price: '₹499', description: 'This is Book 7' },
-    { id: 8, image: book8, title: 'Book 8', author: 'Author 8', rating: 4.5, price: '₹299', description: 'This is Book 8' },
-    { id: 9, image: book9, title: 'Book 9', author: 'Author 9', rating: 3.5, price: '₹250', description: 'This is Book 9' },
-    { id: 10, image: book10, title: 'Book 10', author: 'Author 10', rating: 5, price: '₹450', description: 'This is Book 10' },
+    { id: 6, image: book6, title: 'MASHIN ME', author: 'Author 6', rating: 4, price: '₹350', description: 'This is Book 6' },
+    { id: 7, image: book7, title: 'ANTONITY MY LIFE', author: 'Author 7', rating: 5, price: '₹499', description: 'This is Book 7' },
+    { id: 8, image: book8, title: 'MY MIND', author: 'Author 8', rating: 4.5, price: '₹299', description: 'This is Book 8' },
+    { id: 9, image: book9, title: 'MY BODY', author: 'Author 9', rating: 3.5, price: '₹250', description: 'This is Book 9' },
+    { id: 10, image: book10, title: 'APECTRUMB', author: 'Author 10', rating: 5, price: '₹450', description: 'This is Book 10' },
   ];
 
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const BiographyBestsellers = ({ setCart, setWishlistItems }) => {
 
   return (
     <div className="top-books-container">
-      <h2 className="section-title2">Biography Bestsellers</h2>
+      <h2 className="section-title1">Biography Bestsellers</h2>
       <hr className="section-line" />
       <div className="books-row">
         {books.map((book) => (

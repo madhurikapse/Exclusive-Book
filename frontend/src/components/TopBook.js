@@ -10,11 +10,11 @@ import book5 from '../assets/img/book5.jpg';
 
 const TopBooks = ({ setCart, setWishlistItems }) => {
   const books = [
-    { id: 1, image: book1, title: 'Book 1', author: 'Author 1', rating: 4, price: '₹350', description: 'This is Book 1' },
-    { id: 2, image: book2, title: 'Book 2', author: 'Author 2', rating: 5, price: '₹499', description: 'This is Book 2' },
-    { id: 3, image: book3, title: 'Book 3', author: 'Author 3', rating: 4.5, price: '₹299', description: 'This is Book 3' },
-    { id: 4, image: book4, title: 'Book 4', author: 'Author 4', rating: 3.5, price: '₹250', description: 'This is Book 4' },
-    { id: 5, image: book5, title: 'Book 5', author: 'Author 5', rating: 5, price: '₹450', description: 'This is Book 5' },
+    { id: 1, image: book1, title: 'My soul', author: 'Author 1', rating: 4, price: '₹350', description: 'This is Book 1' },
+    { id: 2, image: book2, title: 'My world in me', author: 'Author 2', rating: 5, price: '₹499', description: 'This is Book 2' },
+    { id: 3, image: book3, title: 'MAGE', author: 'Author 3', rating: 4.5, price: '₹299', description: 'This is Book 3' },
+    { id: 4, image: book4, title: 'HERBAL GPS IN THE KITCHEN', author: 'Author 4', rating: 3.5, price: '₹250', description: 'This is Book 4' },
+    { id: 5, image: book5, title: 'MY ELECTRIC MAGNATIC FRIEND', author: 'Author 5', rating: 5, price: '₹450', description: 'This is Book 5' },
   ];
 
   const navigate = useNavigate();

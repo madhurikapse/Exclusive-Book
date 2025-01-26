@@ -20,8 +20,9 @@ import Footer from './components/Footer';
 import PaymentFooter from './components/PaymentFooter';
 import Register from './pages/Register';
 import WelcomePage from './pages/Welcome';
-import BookDetails from './components/BookDetailsPage';
 import ProductList from './pages/ProductList';
+import HomePage from './components/SearchResults';
+import SearchResults from './components/SearchResults';
 
 function App() {
   const [wishlistItems, setWishlistItems] = useState([]);
@@ -30,60 +31,62 @@ function App() {
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
   };
-  // Function to add book to wishlist and cart
+
   const handleBookClick = (book) => {
-    // Add to wishlist
     setWishlistItems((prevWishlist) => {
       if (!prevWishlist.find((item) => item.id === book.id)) {
         return [...prevWishlist, book];
       }
       return prevWishlist;
     });
-
-    
   };
 
   return (
     <Router>
-      <Navbar wishlist={wishlistItems} cartItems={cart}/>
-              <Navbar2 />
-              <Navbar3 />
+      <Navbar wishlist={wishlistItems} cartItems={cart} />
+      <Navbar2 />
+      <Navbar3 />
       <Routes>
+        {/* Home Page Route */}
         <Route
           path="/"
           element={
             <>
-              
               <Slider />
               <TopBooks
                 setCart={setCart}
                 setWishlistItems={setWishlistItems}
-                handleBookClick={handleBookClick} // Pass the click handler
+                handleBookClick={handleBookClick}
               />
               <BookSlider />
-              <NonFiction  setCart={setCart}
-                setWishlistItems={setWishlistItems}
-                handleBookClick={handleBookClick} />
-              <BiographyBestsellers 
+              <NonFiction
                 setCart={setCart}
                 setWishlistItems={setWishlistItems}
-                handleBookClick={handleBookClick} />
+                handleBookClick={handleBookClick}
+              />
+              <BiographyBestsellers
+                setCart={setCart}
+                setWishlistItems={setWishlistItems}
+                handleBookClick={handleBookClick}
+              />
               <TextSlider />
               <ChildrenBestsellers
                 setCart={setCart}
                 setWishlistItems={setWishlistItems}
-                handleBookClick={handleBookClick} // Pass the click handler
+                handleBookClick={handleBookClick}
               />
-              <Footer/>
-              <PaymentFooter/>
+              <Footer />
+              <PaymentFooter />
             </>
           }
         />
+
+        {/* Other Routes */}
         <Route path="/register" element={<Register />} />
-        <Route path="/LoginPage" element={<LoginPage/>} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/book/:id" element={<BookDetailsPage />} />
-        <Route path="/" element={<ProductList addToCart={addToCart} />} />
+        <Route path="/products" element={<ProductList addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} />} />
         <Route
           path="/wishlist"
@@ -91,8 +94,10 @@ function App() {
         />
         <Route path="/forgotpassword" element={<Forgetpass />} />
         <Route path="/sign-up" element={<SignUp />} />
+
+        <Route path="/search-results" element={<SearchResults/>} />
         <Route
-          path="/TopBook"
+          path="/topbooks"
           element={<TopBooks setCart={setCart} handleBookClick={handleBookClick} />}
         />
         <Route
@@ -100,10 +105,10 @@ function App() {
           element={<BiographyBestsellers setCart={setCart} />}
         />
         <Route
-          path="/ChildrenBestsellers"
+          path="/childrenbestsellers"
           element={<ChildrenBestsellers setCart={setCart} />}
         />
-        <Route path="/book-details/:id" element={<BookDetails />} />
+        <Route path="/book-details/:id" element={<BookDetailsPage />} />
       </Routes>
     </Router>
   );

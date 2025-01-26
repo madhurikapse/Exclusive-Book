@@ -10,11 +10,11 @@ import Child4 from '../assets/img/Child4.jpg';
 
 const ChildrenBestsellers = ({ setCart, setWishlistItems }) => {
   const books = [
-    { id: 1, image: book2, title: 'Book 2', author: 'Author 2', rating: 4, price: '₹350', description: 'This is Book 2.' },
-    { id: 2, image: Child1, title: 'Child 2', author: 'Author 7', rating: 5, price: '₹499', description: 'This is Child 2.' },
-    { id: 3, image: Child2, title: 'Child 3', author: 'Author 8', rating: 4.5, price: '₹299', description: 'This is Child 3.' },
-    { id: 4, image: Child3, title: 'Child 4', author: 'Author 9', rating: 3.5, price: '₹250', description: 'This is Child 4.' },
-    { id: 5, image: Child4, title: 'Child 5', author: 'Author 10', rating: 5, price: '₹450', description: 'This is Child 5.' },
+    { id: 1, image: book2, title: 'MY WORLD IN LIFE', author: 'Author 2', rating: 4, price: '₹350', description: 'This is Book 2.' },
+    { id: 2, image: Child1, title: 'HELLO TO ME', author: 'Author 7', rating: 5, price: '₹499', description: 'This is Child 2.' },
+    { id: 3, image: Child2, title: 'HOW CAN I BE', author: 'Author 8', rating: 4.5, price: '₹299', description: 'This is Child 3.' },
+    { id: 4, image: Child3, title: 'SOON YOUR BE HERE', author: 'Author 9', rating: 3.5, price: '₹250', description: 'This is Child 4.' },
+    { id: 5, image: Child4, title: 'MY LITTLE BODY', author: 'Author 10', rating: 5, price: '₹450', description: 'This is Child 5.' },
   ];
 
   const navigate = useNavigate();
