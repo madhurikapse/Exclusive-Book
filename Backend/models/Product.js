@@ -1,15 +1,9 @@
-import mongoose, { Schema, Types, model } from "mongoose";
 
-const productSchema = new Schema({
-  name: String,
-  price: Number,
-  category: String,
-  quantity: Number,
-  image: String,
-  creatorId: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
-  tags: [String],
-});
-
-const Product = model("Product", productSchema);
+const Product = [
+  { id: 1, name: "Book1" },
+  { id: 2, name: "book2" },
+  { id: 3, name: "Product C" },
+  { id: 4, name: "Product D" },
+];
 
 export default Product;

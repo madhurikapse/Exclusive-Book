@@ -27,10 +27,9 @@ app.get("/", function (req, res) {
 });
 
 app.use("/api/v1", AllRoutes);
-app.use('/api/v1', searchRoutes);
 app.use("/api/v1", subscribeRoutes);
 app.use('/auth',AuthRoutes)
-
+app.use("/api", searchRoutes);
 mongoose
   .connect(process.env.MONGODB_URL)
   .then(() => console.log("DB connected."));
