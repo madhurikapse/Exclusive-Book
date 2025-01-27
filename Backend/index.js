@@ -4,11 +4,14 @@ import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import AllRoutes from "../Backend/routes/index.js"
+import path from "path"; // For path joining
+import AllRoutes from "../Backend/routes/index.js";
 import subscribeRoutes from "./routes/subscribeRoutes.js";
 import searchRoutes from './routes/Searhroutes.js';
 import AuthRoutes from "./routes/AuthRoutes.js";
+
 const app = express();
+
 app.use(cookieParser());
 app.use(morgan("combined"));
 app.use(
@@ -17,7 +20,6 @@ app.use(
     origin: ["http://localhost:3000"],
   })
 );
-
 
 dotenv.config();
 app.use(express.json());
@@ -28,8 +30,16 @@ app.get("/", function (req, res) {
 
 app.use("/api/v1", AllRoutes);
 app.use("/api/v1", subscribeRoutes);
-app.use('/auth',AuthRoutes)
+app.use('/auth', AuthRoutes);
 app.use("/api", searchRoutes);
+
+// Use import.meta.url to get the directory name in ES module
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+// Serve static assets
+
+app.use('/assets', express.static(path.join(__dirname, 'assets'))); 
+
 mongoose
   .connect(process.env.MONGODB_URL)
   .then(() => console.log("DB connected."));
