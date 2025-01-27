@@ -1,22 +1,22 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { AuthContext } from "../context/AuthContext";
-import "../style/Login.css"
+import { AuthContext } from "../context/auth.context";
 import Api from "../axiosconfig";
-const Login = () => {
+
+const LoginAdmin = () => {
   const { state, dispatch } = useContext(AuthContext);
 
   const router = useNavigate();
-  const [userData, setUserData] = useState({
+  const [adminData, setAdminData] = useState({
     email: "",
     password: "",
   });
 
-  console.log(userData, "userData");
+  console.log(adminData, "adminData");
   function handleChange(event) {
     // console.log(event.target.value, event.target.name);
-    setUserData({ ...userData, [event.target.name]: event.target.value });
+    setAdminData({ ...adminData, [event.target.name]: event.target.value });
     // Obj["awdiz"]
   }
 
@@ -24,23 +24,23 @@ const Login = () => {
     e.preventDefault();
     // api call to backend
     try {
-      if (userData.email && userData.password) {
-        const response = await Api.post("/auth/login",{userData});
+      if (adminData.email && adminData.password) {
+        const response = await Api.post("/admin/login-admin", { adminData });
         // const response = {
         //   data: {
         //     success: true,
         //     message: "Login successfull.",
-        //     userData: { name: "Awdiz" },
+        //     adminData: { name: "Awdiz" },
         //   },
         // };
         if (response.data.success) {
-          dispatch({ type: "LOGIN", payload: response.data.userData });
-          // LOGIN(userData)
-          setUserData({
+          dispatch({ type: "LOGIN", payload: response.data.adminData });
+          // LOGIN(adminData)
+          setAdminData({
             email: "",
             password: "",
           });
-          router("/Welcome");
+          router("/");
           toast.success(response.data.message);
         } else {
           toast.error(response?.data?.error);
@@ -59,16 +59,16 @@ const Login = () => {
   }
 
   return (
-    <div className="container">
+    <div>
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1>Login Admin</h1>
         <label>Email : </label>
         <br />
         <input
           type="email"
           onChange={handleChange}
           name="email"
-          value={userData.email}
+          value={adminData.email}
         />
         <br />
         <label>Password : </label>
@@ -77,7 +77,7 @@ const Login = () => {
           type="password"
           onChange={handleChange}
           name="password"
-          value={userData.password}
+          value={adminData.password}
         />
         <br />
         <input type="submit" value="Login" />
@@ -87,4 +87,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginAdmin;

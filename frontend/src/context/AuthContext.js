@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 import toast from "react-hot-toast";
-import Api from "../AxiosConfig";
+import Api from "../axiosconfig";
 
 function reducer(state, action) {
   console.log(state, action, "inside reducer function..");

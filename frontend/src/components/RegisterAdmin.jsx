@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import "../style/register.css"
 import Api from "../axiosconfig";
-const Register = () => {
+
+const RegisterAdmin = () => {
   const router = useNavigate();
-  const [userData, setUserData] = useState({
+  const [adminData, setAdminData] = useState({
     name: "",
     email: "",
     password: "",
@@ -14,10 +14,10 @@ const Register = () => {
   const [disable, setDisable] = useState(true);
   console.log(errors, "errors");
 
-  console.log(userData, "userData");
+  console.log(adminData, "adminData");
   function handleChange(event) {
     // console.log(event.target.value, event.target.name);
-    setUserData({ ...userData, [event.target.name]: event.target.value });
+    setAdminData({ ...adminData, [event.target.name]: event.target.value });
     // Obj["awdiz"]
   }
 
@@ -25,18 +25,18 @@ const Register = () => {
     e.preventDefault();
     // api call to backend
     try {
-      if (userData.name && userData.email && userData.password) {
-        const response = await Api.post("/auth/register",{ userData });
+      if (adminData.name && adminData.email && adminData.password) {
+        const response = await Api.post("/admin/register-admin", { adminData });
         // const response = {
         //   data: { success: true, message: "Regsiter successfull." },
         // };
         if (response.data.success) {
-          setUserData({
+          setAdminData({
             name: "",
             email: "",
             password: "",
           });
-          router("/LoginPage");
+          router("/login-admin");
           toast.success(response.data.message);
         }
       } else {
@@ -53,13 +53,13 @@ const Register = () => {
 
   useEffect(() => {
     const errorsArray = [];
-    if (!userData.name) {
+    if (!adminData.name) {
       errorsArray.push("Name is required.");
     }
-    if (!userData.email) {
+    if (!adminData.email) {
       errorsArray.push("Email is required.");
     }
-    if (!userData.password) {
+    if (!adminData.password) {
       errorsArray.push("Password is required.");
     }
     setErrors(errorsArray);
@@ -68,19 +68,19 @@ const Register = () => {
     } else {
       setDisable(true);
     }
-  }, [userData]);
+  }, [adminData]);
 
   return (
-    <div className="container">
+    <div>
       <form onSubmit={handleSubmit}>
-        <h1>Register</h1>
+        <h1>Register Admin</h1>
         <label>Name : </label>
         <br />
         <input
           type="text"
           onChange={handleChange}
           name="name"
-          value={userData.name}
+          value={adminData.name}
         />
         <br />
         <label>Email : </label>
@@ -89,7 +89,7 @@ const Register = () => {
           type="email"
           onChange={handleChange}
           name="email"
-          value={userData.email}
+          value={adminData.email}
         />
         <br />
         <label>Password : </label>
@@ -98,7 +98,7 @@ const Register = () => {
           type="password"
           onChange={handleChange}
           name="password"
-          value={userData.password}
+          value={adminData.password}
         />
         <br />
         {errors.length > 0 && (
@@ -111,9 +111,8 @@ const Register = () => {
         <input disabled={disable} type="submit" value="Register" />
         <br />
       </form>
-      <button onClick={() => router("/LoginPage")}>Login ?</button>
     </div>
   );
 };
 
-export default Register;
+export default RegisterAdmin;

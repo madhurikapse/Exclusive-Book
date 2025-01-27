@@ -1,8 +1,7 @@
 import express from 'express'
-import { Reigster, VerfiyEmail } from '../controllers/Auth.js'
+import { Register} from '../controllers/auth.controller.js'
 
 const AuthRoutes=express.Router()
 
-AuthRoutes.post('/register',Reigster)
-AuthRoutes.post('/verifyEmail',VerfiyEmail)
+AuthRoutes.post('/register',Register)
 export default AuthRoutes

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../style/Footer.css';
-import Api from '../AxiosConfig'; // Ensure Api is correctly configured and imported
+import Api from '../axiosconfig';
 
 const Footer = () => {
   const [firstName, setFirstName] = useState('');

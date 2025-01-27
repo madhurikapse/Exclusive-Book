@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import Api from "../AxiosConfig";
+import Api from "../axiosconfig";
 import CompanyLogo1 from "../components/CompanyLogo1.jpg";
 import "../style/Style.css";
 import "../style/Sign.css";
@@ -39,7 +39,7 @@ const Navbar = ({ cartItems }) => {
     e.preventDefault();
     try {
       if (userData.email && userData.password) {
-        const response = await Api.post("/auth/login",{ userData });
+        const response = await Api.post("/auth/login",{userData});
         if (response.data.success) {
           dispatch({ type: "LOGIN", payload: response.data.userData });
           setUserData({
@@ -56,7 +56,7 @@ const Navbar = ({ cartItems }) => {
         toast.error("All fields are mandatory.");
       }
     } catch (error) {
-      toast.error(error?.response?.data?.error || "Login failed. Please try again.");
+      toast.error(error?.response?.data?.error || ". Please try again.");
     }
   };
 
