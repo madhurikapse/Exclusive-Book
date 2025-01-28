@@ -3,7 +3,7 @@ import { getCurrentUser, Login, Register } from "../controllers/auth.controller.
 
 const router = Router();
 
-// router.use()
+
 router.post("/register", Register);
 router.post("/login", Login);
 router.get('/get-current-user', getCurrentUser)

@@ -1,49 +1,39 @@
-import User from "../models/user.model.js";
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Admin from "../models/admin.model.js";
 
 export const Login = async (req, res) => {
   try {
-    const { email, password } = req.body?.userData;
+    const { email, password } = req.body; // Adjusted to match frontend payload
     if (!email || !password) {
       return res.json({ success: false, error: "All fields are required." });
     }
 
-    const isUserExists = await User.findOne({ email: email });
+    const isUserExists = await User.findOne({ email });
     if (!isUserExists) {
       return res.json({ success: false, error: "Email not found." });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-      isUserExists.password
-    );
-    console.log(isPasswordCorrect, "isPasswordCorrect");
+    const isPasswordCorrect = await bcrypt.compare(password, isUserExists.password);
     if (!isPasswordCorrect) {
       return res.json({ success: false, error: "Password is wrong." });
     }
+
     const userData = {
       name: isUserExists.name,
       email: isUserExists.email,
       role: "user",
-      userId : isUserExists._id
+      userId: isUserExists._id,
     };
-    // add user data (context), add jwt token,
 
-    const token = await jwt.sign(
-      { userId: isUserExists._id },
-      process.env.JWT_SECRET
-    );
+    const token = jwt.sign({ userId: isUserExists._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-    res.cookie("token", token);
-    return res.json({
-      success: true,
-      message: "Login successfull.",
-      userData,
-    });
+    res.cookie("token", token, { httpOnly: true, secure: false }); // Adjust secure based on environment
+    return res.json({ success: true, message: "Login successful.", userData });
   } catch (error) {
-    return res.json({ success: false, error: error });
+    console.error("Login Error:", error);
+    return res.json({ success: false, error: error.message || "Internal server error." });
   }
 };
 
@@ -84,16 +74,12 @@ export const Register = async (req, res) => {
   }
 };
 
-/// get-current-user
-// 1. access token from cookie
-// 2. verify token -> data -> {userId : "121312121"}
-// 3. Check userId in db
-// 4. return userData / else error
+
 
 export const getCurrentUser = async (req, res) => {
   try {
     const token = req.cookies.token;
-    // console.log(token, "token");
+    
     const data = await jwt.verify(token, process.env.JWT_SECRET);
     console.log(data, "data");
     if (data?.adminId) {

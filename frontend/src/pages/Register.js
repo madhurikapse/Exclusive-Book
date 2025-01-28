@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import "../style/register.css"
 import Api from "../axiosconfig";
+
 const Register = () => {
   const router = useNavigate();
   const [userData, setUserData] = useState({
@@ -26,7 +26,7 @@ const Register = () => {
     // api call to backend
     try {
       if (userData.name && userData.email && userData.password) {
-        const response = await Api.post("/auth/register",{ userData });
+        const response = await Api.post("/auth/register",{userData});
         // const response = {
         //   data: { success: true, message: "Regsiter successfull." },
         // };
@@ -36,7 +36,7 @@ const Register = () => {
             email: "",
             password: "",
           });
-          router("/LoginPage");
+          router("/login");
           toast.success(response.data.message);
         }
       } else {
@@ -71,7 +71,7 @@ const Register = () => {
   }, [userData]);
 
   return (
-    <div className="container">
+    <div>
       <form onSubmit={handleSubmit}>
         <h1>Register</h1>
         <label>Name : </label>
@@ -111,7 +111,7 @@ const Register = () => {
         <input disabled={disable} type="submit" value="Register" />
         <br />
       </form>
-      <button onClick={() => router("/LoginPage")}>Login ?</button>
+      <button onClick={() => router("/login")}>Login ?</button>
     </div>
   );
 };
