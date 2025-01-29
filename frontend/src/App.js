@@ -23,6 +23,9 @@ import WelcomePage from './pages/Welcome';
 import ProductList from './pages/ProductList';
 import HomePage from './components/SearchResults';
 import SearchResults from './components/SearchResults';
+import CheckoutPage from './pages/ChackoutPage';
+import PaymentPage from './pages/PaymentPage';
+import OrderConfirmation from './pages/OrderConfirmation';
 
 function App() {
   const [wishlistItems, setWishlistItems] = useState([]);
@@ -31,6 +34,10 @@ function App() {
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
   };
+ // Calculate the total price
+ const calculateTotalPrice = () => {
+  return cart.reduce((total, item) => total + item.price, 0);
+};
 
   const handleBookClick = (book) => {
     setWishlistItems((prevWishlist) => {
@@ -88,6 +95,14 @@ function App() {
         <Route path="/book/:id" element={<BookDetailsPage />} />
         <Route path="/products" element={<ProductList addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route
+          path="/checkout"
+          element={
+            <CheckoutPage cartItems={cart} totalPrice={calculateTotalPrice()} />
+          }
+        />
+        <Route path="/payment" element={<PaymentPage/>} />
+        <Route path="/order-confirmation" element={<OrderConfirmation/>} />
         <Route
           path="/wishlist"
           element={<WishlistPage wishlist={wishlistItems} setWishlistItems={setWishlistItems} />}

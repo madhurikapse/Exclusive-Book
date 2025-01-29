@@ -26,7 +26,7 @@ const Register = () => {
     // api call to backend
     try {
       if (userData.name && userData.email && userData.password) {
-        const response = await Api.post("/auth/register",{userData});
+        const response = await Api.post("/auth/register",userData);
         // const response = {
         //   data: { success: true, message: "Regsiter successfull." },
         // };

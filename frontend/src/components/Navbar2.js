@@ -1,59 +1,62 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FaSearch, FaTimes } from "react-icons/fa"; // Import FaTimes for cross icon
-import { useNavigate } from "react-router-dom"; // Use this for redirection
+import { FaSearch, FaTimes } from "react-icons/fa"; // Import FaSearch and FaTimes icons
+import { useNavigate } from "react-router-dom"; // Navigation for redirection
 import "../style/Navbar2.css";
 
 const Navbar2 = () => {
-  const [query, setQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-  const navigate = useNavigate(); // Use navigate hook for redirection
+  const [query, setQuery] = useState(""); // Holds the search query
+  const [isSearching, setIsSearching] = useState(false); // Loading state for search
+  const navigate = useNavigate(); // For redirection
 
   const handleSearch = async () => {
-    if (!query.trim()) return alert("Please enter a search term!");
+    if (!query.trim()) {
+      alert("Please enter a search term!"); // Alerts user if the query is empty
+      return;
+    }
 
-    setIsSearching(true);
+    setIsSearching(true); // Sets loading state to true
 
     try {
       const response = await axios.post("http://localhost:5000/api/search", {
         query,
       });
 
-      // Navigate to the search results page and pass the results
+      // Redirect to the search results page and pass search results as state
       navigate("/search-results", {
         state: { results: response.data.results },
       });
     } catch (error) {
-      console.error("Search failed:", error);
+      console.error("Search failed:", error); // Logs errors to the console
+      alert("An error occurred while searching. Please try again later.");
     } finally {
-      setIsSearching(false);
+      setIsSearching(false); // Resets loading state
     }
   };
 
-  // Function to clear the search query and reset search results
   const clearSearch = () => {
-    setQuery(""); // Clears the input field
-    navigate("/"); // Navigate to the homepage or the page you want to redirect to after clearing
+    setQuery(""); // Clears the search input
+    navigate("/"); // Redirects to the homepage or default page
   };
 
   return (
     <div className="navbar2 flex items-center justify-between px-4 py-2 shadow">
-      {/* Logo */}
+      {/* Logo Section */}
       <div className="logo">
-        <img src="/path-to-your-logo/logo.png" alt="Logo" className="h-10" />
+        <img src="/CompanyLogo1.png" alt="Logo" className="h-10" />
       </div>
 
-      {/* Search Bar */}
+      {/* Search Bar Section */}
       <div className="search-container flex items-center border rounded p-2 relative">
         <input
           type="text"
           placeholder="Search here..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+          onKeyPress={(e) => e.key === "Enter" && handleSearch()} // Trigger search on "Enter"
           className="outline-none px-2 w-64"
         />
-        
+
         {/* Search Icon */}
         <FaSearch
           className="cursor-pointer ml-2"
@@ -64,7 +67,7 @@ const Navbar2 = () => {
         {query && (
           <FaTimes
             className="cursor-pointer absolute right-2 text-gray-600"
-            onClick={clearSearch} // Calls clearSearch on click
+            onClick={clearSearch}
           />
         )}
       </div>

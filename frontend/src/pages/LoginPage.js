@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import {AuthContext} from "../context/AuthContext.js"
+import { AuthContext } from "../context/AuthContext";
 import Api from "../axiosconfig";
 
-const Login = () => {
+const LoginPage = () => {
   const { state, dispatch } = useContext(AuthContext);
 
   const router = useNavigate();
@@ -22,35 +22,42 @@ const Login = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    // api call to backend
     try {
-      if (!userData.email || !userData.password) {
-        toast.error("All fields are mandatory.");
-        return;
-      }
-  
-      const response = await Api.post("/auth/login", userData);
-  
-      if (response.data.success) {
-        dispatch({ type: "LOGIN", payload: response.data.userData });
-        setUserData({ email: "", password: "" });
-        router("/");
-        toast.success(response.data.message);
+      if (userData.email && userData.password) {
+        const response = await Api.post("/auth/login", { userData });
+        // const response = {
+        //   data: {
+        //     success: true,
+        //     message: "Login successfull.",
+        //     userData: { name: "Awdiz" },
+        //   },
+        // };
+        if (response.data.success) {
+          dispatch({ type: "LOGIN", payload: response.data.userData });
+          // LOGIN(userData)
+          setUserData({
+            email: "",
+            password: "",
+          });
+          router("/");
+          toast.success(response.data.message);
+        } else {
+          toast.error(response?.data?.error);
+          // console.log(response.data.error, "error")
+        }
       } else {
-        toast.error(typeof response.data.error === "string" ? response.data.error : "Login failed.");
+        throw Error("All fields are mandatory.");
+        // toast.error("All fields are mandatory.");
       }
     } catch (error) {
-      if (error.response) {
-        const errorMessage = error.response.data.error || "An error occurred.";
-        toast.error(typeof errorMessage === "string" ? errorMessage : JSON.stringify(errorMessage));
-      } else if (error.request) {
-        toast.error("Network error: Unable to reach the server.");
-      } else {
-        toast.error("An unexpected error occurred.");
-      }
-      console.error(error);
+      console.log(error, "error");
+      //   console.log(error);
+      //   error =  { data : { success : false, message : "Password is invalid."}}
+      toast.error(error?.response?.data?.error);
     }
   }
-  
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -85,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

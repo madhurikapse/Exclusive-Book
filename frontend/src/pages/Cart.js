@@ -1,137 +1,95 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = ({ cart }) => {
   const [cartItems, setCartItems] = useState(cart);
-  const navigate = useNavigate();  // Initialize navigate hook
+  const navigate = useNavigate();
 
-  const cartStyles = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '20px',
-    backgroundColor: '#f9f9f9',
-    borderRadius: '8px',
+  // Calculate Total Price
+  const calculateTotalPrice = () => {
+    if (!cartItems || cartItems.length === 0) {
+      return 0;
+    }
+
+    // Calculate the total price
+    const total = cartItems.reduce((total, item) => {
+      const itemPrice = parseFloat(item.price);
+
+      // Log the price for each item for debugging
+      console.log(`Item: ${item.title}, Price: ${itemPrice}`);
+
+      // If price is not a valid number, return 0 for that item
+      if (isNaN(itemPrice)) {
+        console.error(`Invalid price for item: ${item.title}`);
+        return total;
+      }
+
+      return total + itemPrice;
+    }, 0);
+
+    // Return the total or 0 if total is NaN
+    return total;
   };
 
-  const headingStyles = {
-    fontSize: '24px',
-    marginBottom: '20px',
-    textAlign: 'center',
+  // Handle Checkout Navigation
+  const handleCheckout = () => {
+    alert('Proceeding to checkout...');
+    navigate('/checkout');
   };
 
-  const cartItemStyles = {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '20px',
-    padding: '10px',
-    backgroundColor: '#fff',
-    borderRadius: '8px',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+  // Handle Payment Navigation
+  const handlePayment = () => {
+    alert('Redirecting to payment...');
+    navigate('/payment');
   };
 
-  const cartItemImageStyles = {
-    width: '80px',
-    height: '120px',
-    objectFit: 'cover',
-    marginRight: '15px',
-    borderRadius: '5px',
-  };
-
-  const cartItemDetailsStyles = {
-    flexGrow: 1,
-  };
-
-  const cartItemTitleStyles = {
-    fontSize: '18px',
-    margin: '0',
-  };
-
-  const cartItemAuthorStyles = {
-    fontSize: '16px',
-    margin: '5px 0',
-    color: '#555',
-  };
-
-  const cartItemPriceStyles = {
-    fontSize: '16px',
-    marginTop: '5px',
-    color: '#333',
-  };
-
-  const cartItemDescriptionStyles = {
-    fontSize: '14px',
-    marginTop: '10px',
-    color: '#777',
-  };
-
-  const buttonStyles = {
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    padding: '12px 20px',
-    fontSize: '16px',
-    cursor: 'pointer',
-    borderRadius: '5px',
-    marginTop: '10px',
-    marginRight: '10px',
-  };
-
-  const buttonHoverStyles = {
-    backgroundColor: '#0056b3',
-  };
-
-  // Remove item from cart
+  // Remove Item from Cart
   const removeItem = (index) => {
     const newCartItems = cartItems.filter((_, i) => i !== index);
     setCartItems(newCartItems);
   };
 
-  // Go to cart functionality
-  const goToCart = () => {
-    navigate('/'); // Navigate to cart page
-  };
+  useEffect(() => {
+    // Log the cart items whenever the cart is updated
+    console.log('Updated Cart:', cartItems);
+  }, [cartItems]);
+
+  const totalPrice = calculateTotalPrice();
 
   return (
-    <div className="cart1" style={cartStyles}>
-      <h1 style={headingStyles}>Your Cart</h1>
+    <div style={{ padding: '20px' }}>
+      <h1>Your Cart</h1>
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <ul>
           {cartItems.map((item, index) => (
-            <li key={index} className="cart-item" style={cartItemStyles}>
+            <li key={index} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
+              {/* Displaying the image of the book */}
               <img
-                src={item.image}
+                src={item.image} // Make sure 'image' property is available in your cart items
                 alt={item.title}
-                className="cart-item-image"
-                style={cartItemImageStyles}
+                style={{ width: '50px', height: '75px', marginRight: '15px' }}
               />
-              <div className="cart-item-details" style={cartItemDetailsStyles}>
-                <h3 style={cartItemTitleStyles}>{item.title}</h3>
-                <h3 style={cartItemAuthorStyles}>{item.author}</h3>
-                <p style={cartItemPriceStyles}>₹{item.price}</p>
-                <p style={cartItemDescriptionStyles}>{item.description}</p>
-                <button
-                  style={buttonStyles}
-                  onMouseOver={(e) => e.target.style.backgroundColor = buttonHoverStyles.backgroundColor}
-                  onMouseOut={(e) => e.target.style.backgroundColor = buttonStyles.backgroundColor}
-                  onClick={() => removeItem(index)}  // Remove button functionality
-                >
-                  Remove
-                </button>
+              <div>
+                <h3>{item.title}</h3>
+                <p>Author: {item.author}</p>
+                <p>Price: ₹{item.price}</p>
+                <button onClick={() => removeItem(index)}>Remove</button>
               </div>
             </li>
           ))}
         </ul>
       )}
-      <button 
-        style={buttonStyles}
-        onMouseOver={(e) => e.target.style.backgroundColor = buttonHoverStyles.backgroundColor}
-        onMouseOut={(e) => e.target.style.backgroundColor = buttonStyles.backgroundColor}
-        onClick={goToCart}  // Go to cart button functionality
-      >
-        Go to Cart
-      </button>
+      <div style={{ marginTop: '20px' }}>
+        <h2>Total: ₹{totalPrice && totalPrice !== NaN ? totalPrice.toFixed(2) : '0.00'}</h2>
+        {cartItems.length > 0 && (
+          <div>
+            <button onClick={handleCheckout}>Checkout</button>
+            <button onClick={handlePayment}>Proceed to Payment</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

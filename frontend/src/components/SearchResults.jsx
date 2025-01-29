@@ -21,7 +21,6 @@ const SearchResults = () => {
             // Ensure you don’t exceed the 10 available images
             const imageIndex = (index % 10) + 1;  // This ensures images repeat if there are more than 10 results
             const imagePath = `../assets/img/book${imageIndex}.jpg`; // Image path for debugging
-
             return (
               <li
                 key={index}

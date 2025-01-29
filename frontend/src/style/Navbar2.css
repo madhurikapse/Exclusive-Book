@@ -1,130 +1,129 @@
 /* Basic Styling */
 .navbar2 {
-    position: relative;
-    background-color: #7cd4e4;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .logo img {
-    max-height: 40px;
-    max-width: 100%;
-  }
-  
-  .search-container {
-    display: flex;
-    align-items: center;
-    border: 1px solid #e2e8f0;
-    background-color: burlywood;
-    border-radius: 25px;
-    padding: 8px;
-    margin: auto;
-    position: relative;
-    width: 70%;
-    margin-bottom: 40px;
-  }
-  
-  .search-container input {
-    border: none;
-    outline: none;
-    padding: 5px 10px;
-    width: 100%;
-    font-size: 14px;
-  }
-  
-  .search-container input::placeholder {
-    color: #01050b;
-    background-color:burlywood;
-    border-radius: 25px;
-  }
-  
-  .search-container .cursor-pointer {
-    font-size: 16px;
-    color: #4a90e2;
-  }
-  
-  /* Search Results */
-  .search-results {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    right: 0;
-    background-color: #1997e0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-height: 300px;
-    overflow-y: auto;
-    z-index: 1000;
-    border-radius: 5px;
-    width: 100%;
-  }
-  
-  .search-results ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .search-results li {
-    padding: 10px;
-    border-bottom: 1px solid #e2e8f0;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .search-results li:hover {
-    background-color: wheat;
-  }
-  
-  .loading {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #4a90e2;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
-  /* Media Queries */
-  @media (max-width: 1024px) {
-    .navbar {
+  position: relative;
+  background-color: #7cd4e4;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  max-height: 40px;
+  max-width: 100%;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  background-color: rgb(218, 197, 169);
+  border-radius: 25px;
+  padding: 8px;
+  margin: auto;
+  position: relative;
+  width: 70%;
+  margin-bottom: 40px;
+}
+
+.search-container input {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  width: 100%;
+  font-size: 14px;
+  background-color: transparent; /* Removed background color */
+}
+
+.search-container input::placeholder {
+  color: #01050b;
+  border-radius: 25px;
+}
+
+.search-container .cursor-pointer {
+  font-size: 16px;
+  color: #4a90e2;
+}
+
+/* Search Results */
+.search-results {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  background-color: #1997e0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.search-results ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results li {
+  padding: 10px;
+  border-bottom: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-results li:hover {
+  background-color: rgb(227, 211, 180);
+}
+
+.loading {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #4a90e2;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .navbar {
       flex-direction: column;
       align-items: center;
       padding: 16px 0;
-    }
-  
-    .search-container {
-      width: 80%;
-    }
-  
-    .search-results {
-      width: 80%;
-    }
   }
-  
-  @media (max-width: 768px) {
-    .navbar {
+
+  .search-container {
+      width: 80%;
+  }
+
+  .search-results {
+      width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
       padding: 16px 8px;
-    }
-  
-    .search-container {
-      width: 100%;
-    }
-  
-    .search-results {
-      width: 100%;
-    }
   }
-  
-  @media (max-width: 480px) {
-    .navbar {
+
+  .search-container {
+      width: 100%;
+  }
+
+  .search-results {
+      width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
       padding: 12px 8px;
-    }
-  
-    .search-container input {
-      font-size: 12px;
-    }
-  
-    .search-results li {
-      font-size: 14px;
-    }
   }
-  
+
+  .search-container input {
+      font-size: 12px;
+  }
+
+  .search-results li {
+      font-size: 14px;
+  }
+}

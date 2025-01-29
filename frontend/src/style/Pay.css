@@ -1,0 +1,58 @@
+.app {
+    height: 200px;
+    width: 800px;
+    margin: auto;
+    margin-top: 20px;
+    border: 1px solid black;
+    background-color: rgb(0, 255, 251);
+   background-size: cover; /* Make the background image cover the container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repetition */
+    border-radius: 20px; /* Add rounded corners */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.pay {
+    margin-top: 50px;
+    text-align: center; /* Center content inside the .pay container */
+}
+
+/* Large screens (desktops) */
+@media (min-width: 1200px) {
+    .app {
+        width: 900px; /* Slightly larger on large screens */
+        height: 200px; /* Adjust height for better proportion */
+    }
+
+    .pay {
+        margin-top: 60px; /* Increase spacing for better layout */
+    }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .app {
+        width: 90%; /* Use percentage width to fit within the screen */
+        height: 200px; /* Reduce height to fit smaller devices */
+        margin-top: 30px;
+    }
+
+    .pay {
+        margin-top: 40px;
+    }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 767px) {
+    .app {
+        width: 100%; /* Take up full width of the screen */
+        height:200px; /* Allow height to adjust automatically */
+        margin-top: 10px;
+        border: none; /* Remove the border for a cleaner look */
+        border-radius: 10px; /* Smaller rounding for mobile */
+    }
+
+    .pay {
+        margin-top: 20px;
+    }
+}
