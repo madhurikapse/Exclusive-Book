@@ -1,95 +1,83 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
 import Api from "../axiosconfig";
 
-const LoginPage = () => {
-  const { state, dispatch } = useContext(AuthContext);
-
+const Login = () => {
+  const { dispatch } = useContext(AuthContext);
   const router = useNavigate();
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
+  
+  const [userData, setUserData] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
-  console.log(userData, "userData");
-  function handleChange(event) {
-    // console.log(event.target.value, event.target.name);
+  const handleChange = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
-    // Obj["awdiz"]
-  }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // api call to backend
     try {
       if (userData.email && userData.password) {
         const response = await Api.post("/auth/login", { userData });
-        // const response = {
-        //   data: {
-        //     success: true,
-        //     message: "Login successfull.",
-        //     userData: { name: "Awdiz" },
-        //   },
-        // };
+
         if (response.data.success) {
           dispatch({ type: "LOGIN", payload: response.data.userData });
-          // LOGIN(userData)
-          setUserData({
-            email: "",
-            password: "",
-          });
+          setUserData({ email: "", password: "" });
           router("/");
           toast.success(response.data.message);
         } else {
           toast.error(response?.data?.error);
-          // console.log(response.data.error, "error")
         }
       } else {
-        throw Error("All fields are mandatory.");
-        // toast.error("All fields are mandatory.");
+        toast.error("All fields are mandatory.");
       }
     } catch (error) {
-      console.log(error, "error");
-      //   console.log(error);
-      //   error =  { data : { success : false, message : "Password is invalid."}}
-      toast.error(error?.response?.data?.error);
+      toast.error(error?.response?.data?.error || "Login failed. Please try again.");
     }
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-form">
         <h1>Login</h1>
-        <label>Email : </label>
-        <br />
+
+        <label>Email:</label>
         <input
           type="email"
           onChange={handleChange}
           name="email"
           value={userData.email}
+          required
         />
-        <br />
-        <label>Password : </label>
-        <br />
-        <input
-          type="password"
-          onChange={handleChange}
-          name="password"
-          value={userData.password}
-        />
-        <br />
-        <input type="submit" value="Login" />
-        <br />
+
+        <label>Password:</label>
+        <div className="password-input">
+          <input
+            type={showPassword ? "text" : "password"}
+            onChange={handleChange}
+            name="password"
+            value={userData.password}
+            required
+          />
+          <span className="eye-icon" onClick={togglePasswordVisibility}>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+
+        <input type="submit" value="Login" className="btn-login" />
       </form>
-      <button onClick={() => router("/register")}>Register ?</button>
-      <button onClick={() => router("/register-admin")}>
-        Admin Register ?
+
+      <button onClick={() => router("/register")} className="register-btn">
+        Register?
       </button>
-      <button onClick={() => router("/login-admin")}>Admin Login ?</button>
     </div>
   );
 };
 
-export default LoginPage;
+export default Login;

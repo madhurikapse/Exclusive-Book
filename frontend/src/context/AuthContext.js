@@ -2,9 +2,9 @@ import { createContext, useEffect, useReducer } from "react";
 import toast from "react-hot-toast";
 import Api from "../axiosconfig";
 
-// Reducer Function
 function reducer(state, action) {
   console.log(state, action, "inside reducer function..");
+  // {type  : 'LOGIN' , payload : {name :'awd', email:"awdw"}}
   switch (action.type) {
     case "LOGIN":
       return { ...state, user: action.payload };
@@ -14,37 +14,34 @@ function reducer(state, action) {
       return state;
   }
 }
-
-// Initial State
 const initialState = { user: null };
 
-// Create Context
 export const AuthContext = createContext();
 
 function MyContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  // Higher Order Component
 
-  // Fetch Current User
   async function getCurrentUser() {
     try {
       const response = await Api.get("/auth/get-current-user");
       if (response.data.success) {
         dispatch({ type: "LOGIN", payload: response.data.userData });
-        toast.success("User authenticated successfully!");
       }
     } catch (error) {
-      const errorMessage = error?.response?.data?.error || "Failed to connect to the server.";
-      toast.error(errorMessage);
+      toast.error(error?.response?.data?.error);
     }
   }
-
-  // Effect to Fetch User on Mount
   useEffect(() => {
-    alert("page load sucessfully")
     getCurrentUser();
+    // alert("Page reloaded.");
+    // // call another api to backend and use locally stored data.
+    // retrive token from storage and send token to backend
+    // token  decrypt -> userid
+    // {name :"awdiz"}
+    // dispatch({type :"LOGIN" , payload })
   }, []);
 
-  // Provider
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       {children}

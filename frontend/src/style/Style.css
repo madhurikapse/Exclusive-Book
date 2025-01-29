@@ -5,10 +5,49 @@
     padding: 10px 20px;
     background-color: #f1f1f1;
   }
+  .password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input input {
+    width: 100%;
+    padding-right: 30px; /* Space for icon */
+  }
+  
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #555;
+  }
+  .eye-icon:hover {
+    color: black;
+  }
   
   .navbar-left, .navbar-right {
     display: flex;
     align-items: center;
+  }
+  .password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input-container input {
+    flex: 1;
+    padding-right: 40px;
+  }
+  
+  .toggle-password-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
   }
   
   .navbar-left .logo img {

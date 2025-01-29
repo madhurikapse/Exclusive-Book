@@ -8,7 +8,6 @@ import path from "path"; // For path joining
 import AllRoutes from "../Backend/routes/index.js";
 import subscribeRoutes from "./routes/subscribeRoutes.js";
 import searchRoutes from './routes/Searhroutes.js';
-import AuthRoutes from "./routes/AuthRoutes.js";
 
 // Load environment variables at the top
 dotenv.config();
@@ -37,7 +36,6 @@ app.get("/", (req, res) => {
 // API routes
 app.use("/api/v1", AllRoutes);
 app.use("/api/v1", subscribeRoutes);
-app.use('/auth', AuthRoutes);
 app.use("/api", searchRoutes);
 
 // Payment Intent Creation Route

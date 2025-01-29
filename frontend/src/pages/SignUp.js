@@ -1,21 +1,30 @@
-// src/pages/SignUpPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import "../style/Sign.css"
+import toast from "react-hot-toast";
+import Api from "../axiosconfig";  // Ensure you have this import
+import "../style/Sign.css";
+
 const SignUpPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle sign-up logic here (e.g., send request to backend)
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
 
-    navigate('/welcome');
+    try {
+      const response = await Api.post("/auth/register", { name, email, password });
+
+      if (response.data.success) {
+        toast.success(response.data.message || "Sign-up successful! Please log in.");
+        navigate('/login');  // Redirect to the login page after successful signup
+      } else {
+        toast.error(response.data.error || "Sign-up failed. Try again.");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.error || "Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -60,12 +69,12 @@ const SignUpPage = () => {
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn-signup">LoginPage</button>
+            <button type="submit" className="btn-signup">Sign Up</button>
           </div>
         </form>
 
         <div className="login-prompt">
-          <p>Already have an account? <Link to="/LoginPage">Login</Link></p>
+          <p>Already have an account? <Link to="/login">Login</Link></p>
         </div>
       </div>
     </div>

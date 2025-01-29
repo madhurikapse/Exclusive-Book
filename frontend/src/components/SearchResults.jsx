@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const SearchResults = () => {
@@ -20,7 +20,7 @@ const SearchResults = () => {
           {results.map((item, index) => {
             // Ensure you don’t exceed the 10 available images
             const imageIndex = (index % 10) + 1;  // This ensures images repeat if there are more than 10 results
-            const imagePath = `../assets/img/book${imageIndex}.jpg`; // Image path for debugging
+            const imagePath = `../assets/img/book${imageIndex}.jpg`; // Correct image path for book1, book2, book3, etc.
             return (
               <li
                 key={index}
@@ -30,7 +30,7 @@ const SearchResults = () => {
                 <img
                   src={imagePath} // Correct image path for book1, book2, book3, etc.
                   alt={item.title}
-                  onError={(e) => e.target.src = "/img/placeholder.jpg"} // Fallback image
+                  onError={(e) => e.target.src = "./assets/img/placeholder.jpg"} // Fallback image
                   className="h-32 w-24 object-cover mb-4 md:mb-0 md:h-40 md:w-28 rounded-md"
                 />
 

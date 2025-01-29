@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes ,FaEye, FaEyeSlash} from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import Api from "../axiosconfig";
@@ -12,13 +12,16 @@ const Navbar = ({ cartItems }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [userData, setUserData] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const emailInputRef = useRef(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
-
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const openLoginModal = () => setIsLoginModalOpen(true);
   const closeLoginModal = () => setIsLoginModalOpen(false);
 
@@ -150,16 +153,25 @@ const Navbar = ({ cartItems }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={userData.password}
-                    onChange={handleChange}
-                    placeholder="Enter your password"
-                    required
-                  />
+                <label htmlFor="password">Password</label>
+  <div className="password-input-container">
+    <input
+      type={showPassword ? "password" : "text"}
+      id="password"
+      name="password"
+      value={userData.password}
+      onChange={handleChange}
+      placeholder="Enter your password"
+      required
+    />
+    <button
+      type="button"
+      className="toggle-password-btn"
+      onClick={togglePasswordVisibility}
+    >
+      {showPassword ? <FaEyeSlash /> : <FaEye />}
+    </button>
+  </div>
                 </div>
                 <div className="form-actions">
                   <button type="submit" className="btn-login">Sign In</button>

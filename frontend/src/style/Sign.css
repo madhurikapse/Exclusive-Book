@@ -152,4 +152,24 @@
   .signup-prompt a:hover {
     text-decoration: underline;
   }
+  .password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input-container input {
+    flex: 1;
+    padding-right: 40px;
+  }
+  
+  .toggle-password-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    background-color: black;
+  }
   

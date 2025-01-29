@@ -1,9 +1,11 @@
-import express from "express";
-import { register, login } from "../controllers/auth.controller.js";
+import { Router } from "express";
+import { getCurrentUser, Login, Register } from "../controllers/auth.controller.js";
 
-const router = express.Router();
+const router = Router();
 
-router.post("/register", register);
-router.post("/login", login);
+// router.use()
+router.post("/register", Register);
+router.post("/login", Login);
+router.get('/get-current-user', getCurrentUser)
 
 export default router;
