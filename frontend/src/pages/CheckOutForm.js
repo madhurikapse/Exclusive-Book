@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import "../style/Pay.css"
-// Load Stripe with your public key
-const stripePromise = loadStripe('pk_test_51Pqvc2Ag4hqJmskOwA2qvmViAhhJUCmdQTPSBoWJBZADRRoEDiEKEsJbSCFuvj1zp89GgXxAYxkGmm1sZK6vFTGc00Es8RGKPe');
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import "../style/Pay.css";
 
 const CheckoutForm = () => {
-    const [amount, setAmount] = useState(5000); // Default amount for the payment in cents (e.g., 5000 = $50)
-    const [loading, setLoading] = useState(false); // Loading state to disable button during payment
-    const [errorMessage, setErrorMessage] = useState(null); // For error messages
+    const [amount, setAmount] = useState(5000); // Default amount in cents (5000 = $50)
+    const [loading, setLoading] = useState(false); // Loading state for payment button
+    const [errorMessage, setErrorMessage] = useState(null); // To display error messages
     const stripe = useStripe();
     const elements = useElements();
 
@@ -19,10 +16,10 @@ const CheckoutForm = () => {
             return;
         }
 
-        setLoading(true); // Set loading to true when starting payment process
+        setLoading(true); // Set loading to true while processing payment
 
         try {
-            // Request the client secret from your backend
+            // Request the client secret from the backend
             const { clientSecret } = await fetch('http://localhost:5000/create-payment-intent', {
                 method: 'POST',
                 headers: {
@@ -39,10 +36,10 @@ const CheckoutForm = () => {
             });
 
             if (error) {
-                setErrorMessage(error.message); // Display error message if any
+                setErrorMessage(error.message); // Set error message if payment fails
             } else if (paymentIntent.status === 'succeeded') {
                 console.log('Payment successful!');
-                // Optionally, show a success message to the user
+                // Optionally, show success message or redirect
             }
         } catch (error) {
             console.error('Payment error: ', error);
@@ -54,7 +51,7 @@ const CheckoutForm = () => {
 
     return (
         <div className='app'>
-            {/* Input for amount (optional, you can hide this in a production environment) */}
+            {/* Amount input (optional for user to change amount) */}
             <div className='pay'>
                 <label>Amount: </label>
                 <input 
@@ -65,9 +62,10 @@ const CheckoutForm = () => {
                 />
             </div>
 
-            {/* Display error message */}
+            {/* Error message display */}
             {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
+            {/* Payment form */}
             <form onSubmit={handleSubmit}>
                 <CardElement />
                 <button type="submit" disabled={!stripe || loading}>
@@ -78,10 +76,4 @@ const CheckoutForm = () => {
     );
 };
 
-const PaymentPage = () => (
-    <Elements stripe={stripePromise}>
-        <CheckoutForm/>
-    </Elements>
-);
-
-export default PaymentPage;
+export default CheckoutForm;

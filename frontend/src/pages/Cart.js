@@ -28,7 +28,7 @@ const Cart = ({ cart }) => {
     }, 0);
 
     // Return the total or 0 if total is NaN
-    return total;
+    return isNaN(total) ? 0 : total;
   };
 
   // Handle Checkout Navigation
@@ -82,7 +82,7 @@ const Cart = ({ cart }) => {
         </ul>
       )}
       <div style={{ marginTop: '20px' }}>
-        <h2>Total: ₹{totalPrice && totalPrice !== NaN ? totalPrice.toFixed(2) : '0.00'}</h2>
+        <h2>Total: ₹{totalPrice.toFixed(2)}</h2>
         {cartItems.length > 0 && (
           <div>
             <button onClick={handleCheckout}>Checkout</button>

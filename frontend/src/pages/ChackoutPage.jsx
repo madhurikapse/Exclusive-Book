@@ -9,6 +9,10 @@ const CheckoutPage = ({ cartItems, totalPrice }) => {
     navigate('/payment');
   };
 
+  // Ensure totalPrice is a number
+  const numericTotalPrice = Number(totalPrice) || 0;
+  const formattedPrice = numericTotalPrice.toFixed(2);
+
   return (
     <div style={{ padding: '20px' }}>
       <h1>Checkout</h1>
@@ -21,12 +25,13 @@ const CheckoutPage = ({ cartItems, totalPrice }) => {
             {cartItems.map((item, index) => (
               <li key={index} style={{ marginBottom: '15px' }}>
                 <h4>{item.title}</h4>
+                <p>{item.Image}</p>
                 <p>Author: {item.author}</p>
                 <p>Price: ₹{item.price}</p>
               </li>
             ))}
           </ul>
-          <h3>Total Price: ₹{totalPrice.toFixed(2)}</h3>
+          <h3>Total Price: ₹{formattedPrice}</h3>
           <button
             onClick={handlePaymentRedirect}
             style={{
