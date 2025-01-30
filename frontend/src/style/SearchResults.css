@@ -1,0 +1,137 @@
+/* Main Page Styling */
+.search-results-page {
+    padding: 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #dfdce2, #18191a);
+    min-height: 100vh;
+}
+.add-to-cart-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #33d6ff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #e64a19;
+}
+
+/* Title */
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Grid Layout */
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Book Card */
+.result-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.result-card:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Book Image */
+.book-image {
+    width: 90px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #6a11cb;
+}
+
+/* Book Info */
+.book-info {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.book-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #333;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #6a11cb;
+    font-style: italic;
+}
+
+.book-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff5733;
+    margin-top: 6px;
+}
+
+.book-description {
+    font-size: 13px;
+    color: #555;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* No Results Message */
+.no-results {
+    font-size: 20px;
+    color: white;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Media Queries for Responsive Layout */
+
+/* Tablet (2 columns) */
+@media (min-width: 600px) {
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book-image {
+        width: 100px;
+        height: 140px;
+    }
+}
+
+/* Desktop (3 columns) */
+@media (min-width: 900px) {
+    .results-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .book-image {
+        width: 120px;
+        height: 160px;
+    }
+}

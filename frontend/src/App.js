@@ -26,6 +26,7 @@ import SearchResults from './components/SearchResults';
 import CheckoutPage from './pages/ChackoutPage';
 import PaymentPage from './pages/PaymentPage';
 import OrderConfirmation from './pages/OrderConfirmation';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [wishlistItems, setWishlistItems] = useState([]);
@@ -109,7 +110,7 @@ function App() {
         />
         <Route path="/forgotpassword" element={<Forgetpass />} />
         <Route path="/sign-up" element={<SignUp />} />
-
+        
         <Route path="/search-results" element={<SearchResults/>} />
         <Route
           path="/topbooks"

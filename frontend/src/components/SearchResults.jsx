@@ -1,9 +1,23 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
+import "../style/SearchResults.css"; // ✅ Import CSS file
+import { toast, ToastContainer } from 'react-toastify'; // Import Toastify
+import 'react-toastify/dist/ReactToastify.css'; // Import styles
+import "../style/Cart.css"
 const SearchResults = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [results, setResults] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+
+  // Load cart and wishlist from localStorage on mount
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    setCart(storedCart);
+    setWishlist(storedWishlist);
+  }, []);
 
   // Fetch the results from state or query params
   useEffect(() => {
@@ -12,48 +26,76 @@ const SearchResults = () => {
     }
   }, [location]);
 
+  // Add to Cart and Wishlist Function
+  const addToCartAndWishlist = (item) => {
+    // Add to Cart
+    const updatedCart = [...cart, item];
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Save in localStorage
+
+    // Add to Wishlist
+    const updatedWishlist = [...wishlist, item];
+    setWishlist(updatedWishlist);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // Save in localStorage
+
+    // Show toast notification
+    toast.success(`${item.title} added to both cart and wishlist!`, {
+      position: "top-right",
+      autoClose: 3000,
+    });
+  };
+
+  // Navigate to Cart Page
+  const goToCart = () => {
+    // Ensure latest cart state is updated before navigation
+    localStorage.setItem("cart", JSON.stringify(cart)); // Store cart in localStorage before navigating
+    navigate("/Cart");
+  };
+
   return (
-    <div className="search-results-page p-4">
-      <h1 className="text-2xl font-bold mb-4">Search Results</h1>
+    <div className="search-results-page">
+      <h1 className="title">Search Results</h1>
       {results.length > 0 ? (
-        <ul className="space-y-6">
+        <ul className="results-grid">
           {results.map((item, index) => {
-            // Ensure you don’t exceed the 10 available images
-            const imageIndex = (index % 10) + 1;  // This ensures images repeat if there are more than 10 results
-            const imagePath = `../assets/img/book${imageIndex}.jpg`; // Correct image path for book1, book2, book3, etc.
+            const imageIndex = (index % 10) + 1;
+            const imagePath = `/assets/img/book${imageIndex}.jpg`;
+
             return (
-              <li
-                key={index}
-                className="p-4 border rounded shadow hover:bg-gray-100 flex flex-col md:flex-row items-center md:space-x-6"
-              >
+              <li key={index} className="result-card">
                 {/* Book Image */}
                 <img
-                  src={imagePath} // Correct image path for book1, book2, book3, etc.
+                  src={imagePath}
                   alt={item.title}
-                  onError={(e) => e.target.src = "./assets/img/placeholder.jpg"} // Fallback image
-                  className="h-32 w-24 object-cover mb-4 md:mb-0 md:h-40 md:w-28 rounded-md"
+                  onError={(e) => (e.target.src = "/assets/placeholder.jpg")}
+                  className="book-image"
+                  onClick={() => addToCartAndWishlist(item)} // Add to cart and wishlist on image click
                 />
 
-                <div className="flex-1">
-                  {/* Book Title */}
-                  <h2 className="text-xl font-semibold">{item.title}</h2>
+                <div className="book-info">
+                  <h2 className="book-title">{item.title}</h2>
+                  <p className="book-author">by {item.author}</p>
+                  <p className="book-price">${item.price}</p>
+                  <p className="book-description">{item.description}</p>
 
-                  {/* Author */}
-                  <p className="text-md text-gray-600">by {item.author}</p>
-
-                  {/* Price */}
-                  <p className="text-lg text-green-600 font-bold">{`$${item.price}`}</p>
-
-                  {/* Description */}
-                  <p className="text-sm text-gray-700 mt-2">{item.description}</p>
+                  {/* Add to Cart Button */}
+                  <button className="add-to-cart-btn" onClick={() => addToCartAndWishlist(item)}>
+                    Add to Cart 🛒
+                  </button>
                 </div>
               </li>
             );
           })}
         </ul>
       ) : (
-        <p className="text-lg text-gray-500">No results found</p>
+        <p className="no-results">No results found</p>
       )}
+
+      {/* Go to Cart Button */}
+      <button onClick={goToCart}>Go to Cart</button>
+
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 };

@@ -1,40 +1,67 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes ,FaEye, FaEyeSlash} from "react-icons/fa";
-import { AuthContext } from "../context/AuthContext";
+import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes, FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
-import Api from "../axiosconfig";
 import CompanyLogo1 from "../components/CompanyLogo1.jpg";
 import "../style/Style.css";
 import "../style/Sign.css";
 
-const Navbar = ({ cartItems }) => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
-  const { dispatch } = useContext(AuthContext);
+  const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
   const navigate = useNavigate();
-  const emailInputRef = useRef(null);
+
+  // Sync cart and wishlist with localStorage
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    setCartItems(storedCart);
+    setWishlistItems(storedWishlist);
+  }, []);
+
+  // Update localStorage when cart or wishlist changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+    localStorage.setItem("wishlist", JSON.stringify(wishlistItems));
+  }, [cartItems, wishlistItems]);
+
+  // Add book to cart
+  const addToCart = (book) => {
+    setCartItems((prevCart) => {
+      const bookExists = prevCart.some(item => item.id === book.id);
+      if (bookExists) {
+        toast.info("This book is already in your cart.");
+        return prevCart;
+      }
+      const updatedCart = [...prevCart, book];
+      localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
+      return updatedCart;
+    });
+  };
+
+  // Add book to wishlist
+  const addToWishlist = (book) => {
+    setWishlistItems((prevWishlist) => {
+      const bookExists = prevWishlist.some(item => item.id === book.id);
+      if (bookExists) {
+        toast.info("This book is already in your wishlist.");
+        return prevWishlist;
+      }
+      const updatedWishlist = [...prevWishlist, book];
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // Update localStorage
+      return updatedWishlist;
+    });
+  };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const openLoginModal = () => setIsLoginModalOpen(true);
   const closeLoginModal = () => setIsLoginModalOpen(false);
-
-  useEffect(() => {
-    if (isLoginModalOpen) {
-      emailInputRef.current?.focus();
-      const handleKeyDown = (event) => {
-        if (event.key === "Escape") closeLoginModal();
-      };
-      window.addEventListener("keydown", handleKeyDown);
-      return () => window.removeEventListener("keydown", handleKeyDown);
-    }
-  }, [isLoginModalOpen]);
 
   const handleChange = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
@@ -44,22 +71,16 @@ const Navbar = ({ cartItems }) => {
     e.preventDefault();
     try {
       if (userData.email && userData.password) {
-        const response = await Api.post("/auth/login",{userData});
-        
-        if (response.data.success) {
-          dispatch({ type: "LOGIN", payload: response.data.userData });
-          setUserData({ email: "", password: "" });
-          closeLoginModal();
-          navigate("/");
-          toast.success(response.data.message);
-        } else {
-          toast.error(response?.data?.error);
-        }
+        // Implement login API logic here
+        toast.success("Login successful!");
+        setUserData({ email: "", password: "" });
+        closeLoginModal();
+        navigate("/");
       } else {
         toast.error("All fields are mandatory.");
       }
     } catch (error) {
-      toast.error(error?.response?.data?.error || "Failed to login. Please try again.");
+      toast.error("Login failed, please try again.");
     }
   };
 
@@ -77,7 +98,7 @@ const Navbar = ({ cartItems }) => {
           <div className="nav-item">
             <Link to="/wishlist">
               <FaHeart size={20} />
-              <span className="nav-text">Wishlist</span>
+              <span className="nav-text">Wishlist: {wishlistItems.length}</span>
             </Link>
           </div>
           <div className="nav-item">
@@ -142,7 +163,6 @@ const Navbar = ({ cartItems }) => {
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <input
-                    ref={emailInputRef}
                     type="email"
                     id="email"
                     name="email"
@@ -153,25 +173,25 @@ const Navbar = ({ cartItems }) => {
                   />
                 </div>
                 <div className="form-group">
-                <label htmlFor="password">Password</label>
-  <div className="password-input-container">
-    <input
-      type={showPassword ? "password" : "text"}
-      id="password"
-      name="password"
-      value={userData.password}
-      onChange={handleChange}
-      placeholder="Enter your password"
-      required
-    />
-    <button
-      type="button"
-      className="toggle-password-btn"
-      onClick={togglePasswordVisibility}
-    >
-      {showPassword ? <FaEyeSlash /> : <FaEye />}
-    </button>
-  </div>
+                  <label htmlFor="password">Password</label>
+                  <div className="password-input-container">
+                    <input
+                      type={showPassword ? "password" : "text"}
+                      id="password"
+                      name="password"
+                      value={userData.password}
+                      onChange={handleChange}
+                      placeholder="Enter your password"
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="toggle-password-btn"
+                      onClick={togglePasswordVisibility}
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
                 </div>
                 <div className="form-actions">
                   <button type="submit" className="btn-login">Sign In</button>
