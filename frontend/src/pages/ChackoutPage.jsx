@@ -25,7 +25,7 @@ const CheckoutPage = ({ cartItems, totalPrice }) => {
             {cartItems.map((item, index) => (
               <li key={index} style={{ marginBottom: '15px' }}>
                 <h4>{item.title}</h4>
-                <p>{item.Image}</p>
+                <p>{item.image}</p>
                 <p>Author: {item.author}</p>
                 <p>Price: ₹{item.price}</p>
               </li>

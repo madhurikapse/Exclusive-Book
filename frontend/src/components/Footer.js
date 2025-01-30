@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../style/Footer.css';
 import Api from '../axiosconfig';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Footer = () => {
   const [firstName, setFirstName] = useState('');
@@ -9,35 +11,40 @@ const Footer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!firstName || !email) {
       setMessage('Please fill in both your first name and email address.');
       return;
     }
-  
+
     try {
-      console.log('Payload:', { firstName, email }); // Debug the payload
-  
+      console.log('Payload:', { firstName, email });
+
       const response = await Api.post('/subscribe', {
         firstName,
         email,
       });
-  
+
       console.log('API Response:', response.data);
-  
+
       if (response.data.success) {
-        setMessage('Subscription successful! Check your email for confirmation.');
+        setMessage('Subscription successful! Please check your email for confirmation.');
+
+        // Show toast notification
+        toast.success('Subscription successful! Please check your email for confirmation.');
+
         setFirstName('');
         setEmail('');
       } else {
         setMessage(response.data.message || 'Subscription failed. Please try again.');
+        toast.error('Subscription failed. Please try again.');
       }
     } catch (error) {
       console.error('Error during subscription:', error);
       setMessage('Subscription failed. Please check your internet connection or try again later.');
+      toast.error('Subscription failed. Please try again later.');
     }
   };
-  
 
   return (
     <footer className="footer">
@@ -143,6 +150,9 @@ const Footer = () => {
           </a>
         </div>
       </div>
+
+      {/* Toast Notification Container */}
+      <ToastContainer />
     </footer>
   );
 };

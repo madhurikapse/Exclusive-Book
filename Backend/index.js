@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path"; // For path joining
 import AllRoutes from "../Backend/routes/index.js";
-import subscribeRoutes from "./routes/subscribeRoutes.js";
+import subscribeRoutes from "./routes/subscribe.js";
 import searchRoutes from './routes/Searhroutes.js';
 
 // Load environment variables at the top

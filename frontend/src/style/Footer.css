@@ -118,6 +118,27 @@
 .footer-bottom p {
   color: black;
 }
+/* Custom Toast Styles */
+.toast-success {
+  background-color: #04f60c; /* Green */
+  color: rgb(54, 231, 14);
+}
+
+.toast-error {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.toast-info {
+  background-color: #2196f3; /* Blue */
+  color: white;
+}
+
+.toast-warning {
+  background-color: #ff9800; /* Orange */
+  color: white;
+}
+
 
 /* Mobile View Adjustments */
 @media (max-width: 768px) {

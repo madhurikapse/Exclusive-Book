@@ -40,7 +40,7 @@ const SearchResults = () => {
 
     // Show toast notification
     toast.success(`${item.title} added to both cart and wishlist!`, {
-      position: "top-right",
+      position: "top-center",
       autoClose: 3000,
     });
   };
@@ -69,7 +69,7 @@ const SearchResults = () => {
                   alt={item.title}
                   onError={(e) => (e.target.src = "/assets/placeholder.jpg")}
                   className="book-image"
-                  onClick={() => addToCartAndWishlist(item)} // Add to cart and wishlist on image click
+                  onClick={() => AndWishlist(item)} // Add to cart and wishlist on image click
                 />
 
                 <div className="book-info">

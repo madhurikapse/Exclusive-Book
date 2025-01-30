@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = ({ cart }) => {
-  const [cartItems, setCartItems] = useState(cart);
+  const [cartItems, setCartItems] = useState(cart || []);
   const navigate = useNavigate();
 
   // Calculate Total Price
@@ -11,48 +11,30 @@ const Cart = ({ cart }) => {
       return 0;
     }
 
-    // Calculate the total price
-    const total = cartItems.reduce((total, item) => {
-      const itemPrice = parseFloat(item.price);
-
-      // Log the price for each item for debugging
-      console.log(`Item: ${item.title}, Price: ${itemPrice}`);
-
-      // If price is not a valid number, return 0 for that item
-      if (isNaN(itemPrice)) {
-        console.error(`Invalid price for item: ${item.title}`);
-        return total;
-      }
-
+    return cartItems.reduce((total, item) => {
+      const itemPrice = parseFloat(item.price) || 0; // Ensure price is a valid number
       return total + itemPrice;
     }, 0);
-
-    // Return the total or 0 if total is NaN
-    return isNaN(total) ? 0 : total;
   };
 
-  // Handle Checkout Navigation
+  useEffect(() => {
+    setCartItems(cart || []); // Update cart items if cart changes
+  }, [cart]);
+
   const handleCheckout = () => {
     alert('Proceeding to checkout...');
     navigate('/checkout');
   };
 
-  // Handle Payment Navigation
   const handlePayment = () => {
     alert('Redirecting to payment...');
     navigate('/payment');
   };
 
-  // Remove Item from Cart
   const removeItem = (index) => {
     const newCartItems = cartItems.filter((_, i) => i !== index);
     setCartItems(newCartItems);
   };
-
-  useEffect(() => {
-    // Log the cart items whenever the cart is updated
-    console.log('Updated Cart:', cartItems);
-  }, [cartItems]);
 
   const totalPrice = calculateTotalPrice();
 
@@ -65,16 +47,15 @@ const Cart = ({ cart }) => {
         <ul>
           {cartItems.map((item, index) => (
             <li key={index} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
-              {/* Displaying the image of the book */}
               <img
-                src={item.image} // Make sure 'image' property is available in your cart items
+                src={item.image}
                 alt={item.title}
                 style={{ width: '50px', height: '75px', marginRight: '15px' }}
               />
               <div>
                 <h3>{item.title}</h3>
                 <p>Author: {item.author}</p>
-                <p>Price: ₹{item.price}</p>
+                <p>Price: ₹{parseFloat(item.price).toFixed(2)}</p>
                 <button onClick={() => removeItem(index)}>Remove</button>
               </div>
             </li>

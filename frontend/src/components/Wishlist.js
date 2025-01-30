@@ -2,7 +2,7 @@ import React from 'react';
 
 const Wishlist = ({ wishlist, onCheckout }) => {
   const calculateTotalPrice = () =>
-    wishlist.reduce((total, item) => total + item.price, 0);
+    wishlist.reduce((total, item) => total + item.price,1);
 
   return (
     <div className="wishlist-container">
@@ -20,6 +20,7 @@ const Wishlist = ({ wishlist, onCheckout }) => {
               />
               <div>
                 <h4>{item.title}</h4>
+                <p>{item.image}</p>
                 <p>Author: {item.author}</p>
                 <p>Price: ₹{item.price.toFixed(2)}</p>
               </div>

@@ -17,7 +17,7 @@ const Login = () => {
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
+    setShowPassword((prev) =>prev);
   };
 
   async function handleSubmit(e) {
