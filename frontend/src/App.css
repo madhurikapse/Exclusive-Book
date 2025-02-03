@@ -1,10 +1,11 @@
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #f9f9f9; /* Light Background */
-  color: #333; /* Dark Gray Text */
+  background-image: url('https://w0.peakpx.com/wallpaper/350/92/HD-wallpaper-love-book-books-gate-heart-lovely-lover-lovers-romantic-sweet.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Optional: Keeps the background fixed while scrolling */
 }
+
 
 .App {
   text-align: center;
