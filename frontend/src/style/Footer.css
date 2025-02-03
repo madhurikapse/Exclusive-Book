@@ -1,7 +1,7 @@
 /* Footer Styles */
 .footer {
   margin-top: 30px;
-  background-color: #f8f8f8;
+  background-color: #827d7d;
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -164,7 +164,7 @@
   /* Show content when active */
   .footer-section-content.active {
     display: block;
-    background-color: #f8f8f8;
+    background-color: #141414;
     padding: 10px;
     margin-top: 5px;
   }

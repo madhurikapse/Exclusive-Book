@@ -426,6 +426,7 @@
     display: block; /* Show menu icon */
     color: rgb(14, 13, 13);
     background-color: black;
+    margin-left: 300px;
   }
 
   .nav-item {

@@ -91,12 +91,12 @@ function App() {
         />
 
         {/* Other Routes */}
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/welcome" element={<WelcomePage />} />
-        <Route path="/book/:id" element={<BookDetailsPage />} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/welcome" element={<WelcomePage/>} />
+        <Route path="/book/:id" element={<BookDetailsPage/>} />
         <Route path="/products" element={<ProductList addToCart={addToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/cart" element={<Cart cart={cart}/>} />
         <Route
           path="/checkout"
           element={

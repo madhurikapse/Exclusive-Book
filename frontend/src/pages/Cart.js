@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import "../style/Cart.css"
 const Cart = ({ cart }) => {
   const [cartItems, setCartItems] = useState(cart || []);
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const Cart = ({ cart }) => {
       <div style={{ marginTop: '20px' }}>
         <h2>Total: ₹{totalPrice.toFixed(2)}</h2>
         {cartItems.length > 0 && (
-          <div>
+          <div className='flex'>
             <button onClick={handleCheckout}>Checkout</button>
             <button onClick={handlePayment}>Proceed to Payment</button>
           </div>
