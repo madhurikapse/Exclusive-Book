@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Cart from './pages/Cart';
-import "./App.css"
-import BookDetailsPage from './components/BookDetailsPage';
+import "./App.css";
+
 import Navbar from './components/Navbar';
-import LoginPage from './pages/LoginPage';
-import WishlistPage from './pages/WishlistPage';
-import Forgetpass from './pages/Forgetpass';
-import SignUp from './pages/SignUp';
 import Navbar2 from './components/Navbar2';
 import Navbar3 from './components/Navbar3';
 import Slider from './components/Slider';
@@ -19,6 +14,13 @@ import TextSlider from './components/TextSlider';
 import ChildrenBestsellers from './components/ChildrenBestsellers';
 import Footer from './components/Footer';
 import PaymentFooter from './components/PaymentFooter';
+
+import Cart from './pages/Cart';
+import BookDetailsPage from './components/BookDetailsPage';
+import LoginPage from './pages/LoginPage';
+import WishlistPage from './pages/WishlistPage';
+import Forgetpass from './pages/Forgetpass';
+import SignUp from './pages/SignUp';
 import Register from './pages/Register';
 import WelcomePage from './pages/Welcome';
 import ProductList from './pages/ProductList';
@@ -28,32 +30,13 @@ import CheckoutPage from './pages/ChackoutPage';
 import PaymentPage from './pages/PaymentPage';
 import OrderConfirmation from './pages/OrderConfirmation';
 import { ToastContainer } from 'react-toastify';
+import About from './pages/About';
 
 function App() {
-  const [wishlistItems, setWishlistItems] = useState([]);
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
-  };
- // Calculate the total price
- const calculateTotalPrice = () => {
-  return cart.reduce((total, item) => total + item.price, 0);
-};
-
-  const handleBookClick = (book) => {
-    setWishlistItems((prevWishlist) => {
-      if (!prevWishlist.find((item) => item.id === book.id)) {
-        return [...prevWishlist, book];
-      }
-      return prevWishlist;
-    });
-  };
-
   return (
     <Router>
-      <Navbar wishlist={wishlistItems} cartItems={cart} />
-      <Navbar2 />
+      <Navbar />
+    
       <Navbar3 />
       <Routes>
         {/* Home Page Route */}
@@ -62,28 +45,8 @@ function App() {
           element={
             <>
               <Slider />
-              <TopBooks
-                setCart={setCart}
-                setWishlistItems={setWishlistItems}
-                handleBookClick={handleBookClick}
-              />
-              <BookSlider />
-              <NonFiction
-                setCart={setCart}
-                setWishlistItems={setWishlistItems}
-                handleBookClick={handleBookClick}
-              />
-              <BiographyBestsellers
-                setCart={setCart}
-                setWishlistItems={setWishlistItems}
-                handleBookClick={handleBookClick}
-              />
+      <About/>
               <TextSlider />
-              <ChildrenBestsellers
-                setCart={setCart}
-                setWishlistItems={setWishlistItems}
-                handleBookClick={handleBookClick}
-              />
               <Footer />
               <PaymentFooter />
             </>
@@ -91,40 +54,22 @@ function App() {
         />
 
         {/* Other Routes */}
-        <Route path="/register" element={<Register/>} />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/welcome" element={<WelcomePage/>} />
-        <Route path="/book/:id" element={<BookDetailsPage/>} />
-        <Route path="/products" element={<ProductList addToCart={addToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart}/>} />
-        <Route
-          path="/checkout"
-          element={
-            <CheckoutPage cartItems={cart} totalPrice={calculateTotalPrice()} />
-          }
-        />
-        <Route path="/payment" element={<PaymentPage/>} />
-        <Route path="/order-confirmation" element={<OrderConfirmation/>} />
-        <Route
-          path="/wishlist"
-          element={<WishlistPage wishlist={wishlistItems} setWishlistItems={setWishlistItems} />}
-        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/book/:id" element={<BookDetailsPage />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/forgotpassword" element={<Forgetpass />} />
         <Route path="/sign-up" element={<SignUp />} />
-        
-        <Route path="/search-results" element={<SearchResults/>} />
-        <Route
-          path="/topbooks"
-          element={<TopBooks setCart={setCart} handleBookClick={handleBookClick} />}
-        />
-        <Route
-          path="/biography"
-          element={<BiographyBestsellers setCart={setCart} />}
-        />
-        <Route
-          path="/childrenbestsellers"
-          element={<ChildrenBestsellers setCart={setCart} />}
-        />
+        <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/topbooks" element={<TopBooks />} />
+        <Route path="/biography" element={<BiographyBestsellers />} />
+        <Route path="/childrenbestsellers" element={<ChildrenBestsellers />} />
         <Route path="/book-details/:id" element={<BookDetailsPage />} />
       </Routes>
     </Router>

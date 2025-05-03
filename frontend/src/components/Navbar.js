@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes, FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
-import CompanyLogo1 from "../components/CompanyLogo1.jpg";
+import Logo from "../assets/img/Africa Annual Review 2024_files/Logo.jpeg"
+
 import "../style/Style.css";
 import "../style/Sign.css";
 
@@ -11,51 +12,11 @@ const Navbar = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-  const [wishlistItems, setWishlistItems] = useState([]);
   const navigate = useNavigate();
 
-  // Sync cart and wishlist with localStorage
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    setCartItems(storedCart);
-    setWishlistItems(storedWishlist);
-  }, []);
 
-  // Update localStorage when cart or wishlist changes
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-    localStorage.setItem("wishlist", JSON.stringify(wishlistItems));
-  }, [cartItems, wishlistItems]);
 
-  // Add book to cart
-  const addToCart = (book) => {
-    setCartItems((prevCart) => {
-      const bookExists = prevCart.some(item => item.id === book.id);
-      if (bookExists) {
-        toast.info("This book is already in your cart.");
-        return prevCart;
-      }
-      const updatedCart = [...prevCart, book];
-      localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
-      return updatedCart;
-    });
-  };
-
-  // Add book to wishlist
-  const addToWishlist = (book) => {
-    setWishlistItems((prevWishlist) => {
-      const bookExists = prevWishlist.some(item => item.id === book.id);
-      if (bookExists) {
-        toast.info("This book is already in your wishlist.");
-        return prevWishlist;
-      }
-      const updatedWishlist = [...prevWishlist, book];
-      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // Update localStorage
-      return updatedWishlist;
-    });
-  };
+  
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -89,31 +50,18 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="navbar-left">
           <Link to="/" className="logo">
-            <img src={CompanyLogo1} alt="Company Logo" />
+            <img src={{Logo}} alt="Company Logo" />
           </Link>
-          <span className="corporate-events">Corporate Events</span>
         </div>
 
-        <div className="navbar-right">
-          <div className="nav-item">
-            <Link to="/wishlist">
-              <FaHeart size={20} />
-              <span className="nav-text">Wishlist: {wishlistItems.length}</span>
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link to="/cart">
-              <FaShoppingCart size={20} />
-              <span className="nav-text">Cart: {cartItems.length}</span>
-            </Link>
-          </div>
+       
           <div className="nav-item">
             <button onClick={openLoginModal} className="sign-in-btn">
               <FaUserAlt size={20} />
               <span className="nav-text">Sign In</span>
             </button>
           </div>
-        </div>
+        
 
         <div className="navbar-mobile">
           <div className="nav-item-mobile">
