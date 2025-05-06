@@ -1,17 +1,11 @@
-import { model, Schema } from "mongoose";
+// models/User.js (Example using Mongoose for MongoDB)
+import mongoose from 'mongoose';
 
-const userSchema = new Schema({
-  name: String,
-  email: String,
+const userSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
 
-const User = model("Users", userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;
-
-// const newUser = new User({
-//   name: "Awdiz",
-//   email: "awdiz@gmail.com",
-//   password: "awdiz@123",
-// });

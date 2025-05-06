@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaBars, FaTimes, FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
-import Logo from "../assets/img/Africa Annual Review 2024_files/Logo.jpeg"
-
+import Logo from "../assets/img/Africa Annual Review 2024_files/Logo.jpeg";
 import "../style/Style.css";
 import "../style/Sign.css";
 import axios from "axios";
@@ -15,12 +14,9 @@ const Navbar = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-
-
-  
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
+  
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const openLoginModal = () => setIsLoginModalOpen(true);
   const closeLoginModal = () => setIsLoginModalOpen(false);
@@ -30,28 +26,24 @@ const Navbar = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    if (userData.email && userData.password) {
-      const response = await axios.post("/auth/login", userData); // Use your actual backend URL
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/auth/login", {
+        email: userData.email,
+        password: userData.password,
+      });
 
       toast.success("Login successful!");
-      // localStorage.setItem("token", response.data.token); // If you're using JWT
       setUserData({ email: "", password: "" });
-      closeLoginModal();
-      navigate("/");
-    } else {
-      toast.error("All fields are mandatory.");
+      navigate("/"); // Redirect to the home page or dashboard
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message || "Invalid credentials.");
+      } else {
+        toast.error("Login failed, please try again.");
+      }
     }
-  } catch (error) {
-    if (error.response && error.response.data) {
-      toast.error(error.response.data.message || "Invalid email or password.");
-    } else {
-      toast.error("Login failed, please try again.");
-    }
-  }
-};
-
+  };
 
   return (
     <>
@@ -59,34 +51,25 @@ const Navbar = () => {
         <div className="navbar-left">
           <Link to="/" className="logo">
             <img src={Logo} alt="Company Logo" />
-
           </Link>
         </div>
 
-       
-          <div className="nav-item">
-            <button onClick={openLoginModal} className="sign-in-btn">
-              <FaUserAlt size={20} />
-              <span className="nav-text">Sign In</span>
-            </button>
-          </div>
-        
+        <div className="navbar-right">
+          <button onClick={openLoginModal} className="sign-in-btn">
+            <FaUserAlt size={20} />
+            <span className="nav-text">Sign In</span>
+          </button>
+        </div>
 
         <div className="navbar-mobile">
-          <div className="nav-item-mobile">
-            
-          </div>
-          <div className="nav-item-mobile">
-            
-          </div>
+          <button className="menu-icon" onClick={toggleMenu}>
+            <FaBars size={24} color="black" />
+          </button>
           <div className="nav-item-mobile">
             <button onClick={openLoginModal}>
               <FaUserAlt size={20} />
             </button>
           </div>
-          <button className="menu-icon" onClick={toggleMenu}>
-            <FaBars size={24} color="black" />
-          </button>
         </div>
 
         <div className={`side-menu ${isMenuOpen ? "show" : ""}`}>
