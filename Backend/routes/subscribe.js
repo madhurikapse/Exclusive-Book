@@ -26,8 +26,8 @@ router.post('/subscribe', async (req, res) => {
     const userMailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'Subscription Confirmation',
-      text: `Hi ${firstName},\n\nThank you for subscribing to our company Antoinette Hands!`,
+      subject: 'Enquriy Confirmation',
+      text: `Hi ${firstName},\n\nThank you for Contact to our company INTELLIPARTNERS!`,
     };
 
     const adminMailOptions = {

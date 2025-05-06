@@ -325,9 +325,13 @@
   background-color: #333;
 }
 
-.navbar-left .logo {
-  display: flex;
-  align-items: center;
+
+
+
+.navbar-left .logo img {
+  height: 200px;
+  width: auto; /* keep aspect ratio */
+  object-fit: contain;
 }
 
 .navbar-logo {

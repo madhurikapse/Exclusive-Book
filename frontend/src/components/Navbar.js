@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserAlt, FaHeart, FaShoppingCart, FaBars, FaTimes, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaUserAlt, FaBars, FaTimes, FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Logo from "../assets/img/Africa Annual Review 2024_files/Logo.jpeg"
 
 import "../style/Style.css";
 import "../style/Sign.css";
+import axios from "axios";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,28 +30,36 @@ const Navbar = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      if (userData.email && userData.password) {
-        // Implement login API logic here
-        toast.success("Login successful!");
-        setUserData({ email: "", password: "" });
-        closeLoginModal();
-        navigate("/");
-      } else {
-        toast.error("All fields are mandatory.");
-      }
-    } catch (error) {
+  e.preventDefault();
+  try {
+    if (userData.email && userData.password) {
+      const response = await axios.post("/auth/login", userData); // Use your actual backend URL
+
+      toast.success("Login successful!");
+      // localStorage.setItem("token", response.data.token); // If you're using JWT
+      setUserData({ email: "", password: "" });
+      closeLoginModal();
+      navigate("/");
+    } else {
+      toast.error("All fields are mandatory.");
+    }
+  } catch (error) {
+    if (error.response && error.response.data) {
+      toast.error(error.response.data.message || "Invalid email or password.");
+    } else {
       toast.error("Login failed, please try again.");
     }
-  };
+  }
+};
+
 
   return (
     <>
       <nav className="navbar">
         <div className="navbar-left">
           <Link to="/" className="logo">
-            <img src={{Logo}} alt="Company Logo" />
+            <img src={Logo} alt="Company Logo" />
+
           </Link>
         </div>
 
@@ -65,14 +74,10 @@ const Navbar = () => {
 
         <div className="navbar-mobile">
           <div className="nav-item-mobile">
-            <Link to="/wishlist">
-              <FaHeart size={20} />
-            </Link>
+            
           </div>
           <div className="nav-item-mobile">
-            <Link to="/cart">
-              <FaShoppingCart size={20} />
-            </Link>
+            
           </div>
           <div className="nav-item-mobile">
             <button onClick={openLoginModal}>

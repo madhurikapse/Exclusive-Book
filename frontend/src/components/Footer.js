@@ -59,7 +59,7 @@ const Footer = () => {
         </p>
         <p>
           <strong>Email:</strong>{" "}
-          <a href="mailto:info@exclusivebooks.co.za">info@exclusivebooks.co.za</a>
+          <a href="mailto:info@exclusivebooks.co.za">anelisabolosha@gmail.com</a>
         </p>
         <p><strong>Contact Hours:</strong></p>
         <ul>
@@ -99,8 +99,8 @@ const Footer = () => {
 
       {/* Subscription Form Section */}
       <div className="footer-section">
-        <h3>Subscribe</h3>
-        <p>Get exclusive deals, previews, and updates when you subscribe.</p>
+        <h3>Contact</h3>
+        <p>Get exclusive deals, previews, and updates when you Send Enquiry.</p>
 
         <form onSubmit={handleSubmit}>
           <label htmlFor="first-name">Your First Name</label>
@@ -125,7 +125,7 @@ const Footer = () => {
             aria-label="Enter your email address"
           />
 
-          <button type="submit">Subscribe</button>
+          <button type="submit">Send Enquiry</button>
         </form>
 
         {message && (
