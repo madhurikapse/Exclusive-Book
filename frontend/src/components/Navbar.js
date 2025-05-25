@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaBars, FaTimes, FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Logo from "../assets/img/Africa Annual Review 2024_files/Logo.jpeg";
-import "../style/Style.css";
-import "../style/Sign.css";
+import "../style/Navbar.css";
 import axios from "axios";
 
 const Navbar = () => {
@@ -16,7 +15,7 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
-  
+
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const openLoginModal = () => setIsLoginModalOpen(true);
   const closeLoginModal = () => setIsLoginModalOpen(false);
@@ -28,14 +27,15 @@ const Navbar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
+      const response = await axios.post("http://localhost:5000/api/v1/auth/login", {
         email: userData.email,
         password: userData.password,
       });
 
       toast.success("Login successful!");
       setUserData({ email: "", password: "" });
-      navigate("/"); // Redirect to the home page or dashboard
+      closeLoginModal(); // Close modal after login
+      navigate("/"); // Redirect to home/dashboard
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message || "Invalid credentials.");
@@ -91,7 +91,11 @@ const Navbar = () => {
         {isLoginModalOpen && (
           <div className="login-modal">
             <div className="login-modal-content">
-              <button className="close-btn" onClick={closeLoginModal} aria-label="Close Login Modal">
+              <button
+                className="close-btn"
+                onClick={closeLoginModal}
+                aria-label="Close Login Modal"
+              >
                 X
               </button>
               <h3>Login</h3>
@@ -112,7 +116,7 @@ const Navbar = () => {
                   <label htmlFor="password">Password</label>
                   <div className="password-input-container">
                     <input
-                      type={showPassword ? "password" : "text"}
+                      type={showPassword ? "text" : "password"}
                       id="password"
                       name="password"
                       value={userData.password}
@@ -133,9 +137,6 @@ const Navbar = () => {
                   <button type="submit" className="btn-login">Sign In</button>
                 </div>
               </form>
-              <div className="signup-prompt">
-                <p>Don't have an account? <span onClick={() => navigate("/Register")} className="signup-link">register one</span></p>
-              </div>
             </div>
           </div>
         )}

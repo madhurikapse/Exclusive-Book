@@ -20,23 +20,20 @@ const Footer = () => {
     try {
       console.log('Payload:', { firstName, email });
 
-      const response = await Api.post('/subscribe', {
+      const { data } = await Api.post('/subscribe', {
         firstName,
         email,
       });
 
-      console.log('API Response:', response.data);
+      console.log('API Response:', data);
 
-      if (response.data.success) {
+      if (data.success) {
         setMessage('Subscription successful! Please check your email for confirmation.');
-
-        // Show toast notification
         toast.success('Subscription successful! Please check your email for confirmation.');
-
         setFirstName('');
         setEmail('');
       } else {
-        setMessage(response.data.message || 'Subscription failed. Please try again.');
+        setMessage(data.message || 'Subscription failed. Please try again.');
         toast.error('Subscription failed. Please try again.');
       }
     } catch (error) {
@@ -51,20 +48,13 @@ const Footer = () => {
       {/* Customer Care Section */}
       <div className="footer-section customer-care">
         <h3>Customer Care</h3>
-        <p>
-          <strong>Toll-Free SA Only:</strong> 0800 332 550
-        </p>
-        <p>
-          <strong>International:</strong> +27 (0) 87 365 4677
-        </p>
-        <p>
-          <strong>Email:</strong>{" "}
-          <a href="mailto:info@exclusivebooks.co.za">anelisabolosha@gmail.com</a>
-        </p>
+        <p><strong>Toll-Free SA Only:</strong> 0800 332 550</p>
+        <p><strong>International:</strong> +27 (0) 87 365 4677</p>
+        <p><strong>Email:</strong> <a href="mailto:anelisabolosha@gmail.com">anelisabolosha@gmail.com</a></p>
         <p><strong>Contact Hours:</strong></p>
         <ul>
-          <li key="monday-friday">Monday to Friday: 7:30AM - 4:30PM</li>
-          <li key="saturday">Saturday: 8:00AM - 1:00PM</li>
+          <li>Monday to Friday: 7:30AM - 4:30PM</li>
+          <li>Saturday: 8:00AM - 1:00PM</li>
         </ul>
       </div>
 
@@ -72,14 +62,14 @@ const Footer = () => {
       <div className="footer-section">
         <h3>About Us</h3>
         <ul>
-          <li key="contact-us"><a href="#">Contact Us</a></li>
-          <li key="store-locator"><a href="#">Store Locator</a></li>
-          <li key="eb-news"><a href="#">EB News</a></li>
-          <li key="events"><a href="#">Events</a></li>
-          <li key="rewards-programme"><a href="#">Rewards Programme</a></li>
-          <li key="loyalty-programme"><a href="#">Loyalty Programme</a></li>
-          <li key="about-exclusive-books"><a href="#">About Exclusive Books</a></li>
-          <li key="gift-cards"><a href="#">Gift Cards & Vouchers</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/store-locator">Store Locator</a></li>
+          <li><a href="/eb-news">EB News</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/rewards-programme">Rewards Programme</a></li>
+          <li><a href="/loyalty-programme">Loyalty Programme</a></li>
+          <li><a href="/about">About Exclusive Books</a></li>
+          <li><a href="/gift-cards">Gift Cards & Vouchers</a></li>
         </ul>
       </div>
 
@@ -87,13 +77,13 @@ const Footer = () => {
       <div className="footer-section">
         <h3>Customer Services</h3>
         <ul>
-          <li key="track-order"><a href="#">Track Order</a></li>
-          <li key="delivery-information"><a href="#">Delivery Information</a></li>
-          <li key="returns"><a href="#">Guarantee & Returns</a></li>
-          <li key="banking-details"><a href="#">Banking Details</a></li>
-          <li key="corporate-clients"><a href="#">Corporate Clients</a></li>
-          <li key="vendor-registrations"><a href="#">Vendor Registrations</a></li>
-          <li key="faqs"><a href="#">FAQs</a></li>
+          <li><a href="/track-order">Track Order</a></li>
+          <li><a href="/delivery-info">Delivery Information</a></li>
+          <li><a href="/returns">Guarantee & Returns</a></li>
+          <li><a href="/banking">Banking Details</a></li>
+          <li><a href="/corporate-clients">Corporate Clients</a></li>
+          <li><a href="/vendor-registration">Vendor Registrations</a></li>
+          <li><a href="/faqs">FAQs</a></li>
         </ul>
       </div>
 
@@ -144,9 +134,6 @@ const Footer = () => {
           </a>
           <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="social-icon">
             <i className="fab fa-tiktok" aria-label="TikTok"></i>
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-            <i className="fab fa-twitter" aria-label="X"></i>
           </a>
         </div>
       </div>
