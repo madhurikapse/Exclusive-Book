@@ -4,6 +4,7 @@ import 'dotenv/config';
 
 const router = express.Router();
 
+// Setup transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -12,6 +13,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Route to handle subscriptions
 router.post('/subscribe', async (req, res) => {
   const { firstName, email } = req.body;
 
@@ -23,13 +25,15 @@ router.post('/subscribe', async (req, res) => {
   }
 
   try {
+    // Email to user
     const userMailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'Enquriy Confirmation',
-      text: `Hi ${firstName},\n\nThank you for Contact to our company INTELLIPARTNERS!`,
+      subject: 'Enquiry Confirmation',
+      text: `Hi ${firstName},\n\nThank you for contacting INTELLIPARTNERS! We will get back to you shortly.`,
     };
 
+    // Email to admin
     const adminMailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.ADMIN_EMAIL,

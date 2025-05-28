@@ -124,18 +124,18 @@ const Footer = () => {
           </p>
         )}
 
-        {/* Social Media Icons */}
-        <div className="social-media-box">
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-            <i className="fab fa-twitter" aria-label="Twitter"></i>
-          </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-            <i className="fab fa-facebook" aria-label="Facebook"></i>
-          </a>
-          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-            <i className="fab fa-tiktok" aria-label="TikTok"></i>
-          </a>
-        </div>
+      <div className="social-media-box">
+  <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="WhatsApp">
+    <i className="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">
+    <i className="fab fa-instagram"></i>
+  </a>
+  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Facebook">
+    <i className="fab fa-facebook-f"></i>
+  </a>
+</div>
+
       </div>
 
       {/* Toast Notification Container */}

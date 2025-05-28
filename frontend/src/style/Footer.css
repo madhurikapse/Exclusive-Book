@@ -13,6 +13,20 @@
   flex: 1;
   padding: 10px;
 }
+.social-media-box {
+  margin-top: 1rem;
+}
+
+.social-icon {
+  margin-right: 10px;
+  font-size: 1.5rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #007bff;
+}
 
 /* Customer Care Section Styling */
 .footer-section.customer-care {

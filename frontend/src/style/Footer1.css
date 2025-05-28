@@ -18,6 +18,20 @@
 .footer-section:last-child {
   border-right: none;
 }
+.social-media-box {
+  margin-top: 1rem;
+}
+
+.social-icon {
+  margin-right: 10px;
+  font-size: 1.5rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #007bff;
+}
 
 /* Section Headings */
 .footer-section h2 {
