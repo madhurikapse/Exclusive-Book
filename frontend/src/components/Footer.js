@@ -9,39 +9,45 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!firstName || !email) {
-      setMessage('Please fill in both your first name and email address.');
-      return;
+  if (!firstName || !email) {
+    setMessage('Please fill in both your first name and email address.');
+    return;
+  }
+
+  try {
+    const { data } = await Api.post('/subscribe', {
+      firstName,
+      email,
+    });
+
+    if (data.success) {
+      setMessage('Subscription successful! Please check your email for confirmation.');
+      toast.success('Subscription successful! Please check your email for confirmation.');
+      
+      // Clear form fields
+      setFirstName('');
+      setEmail('');
+
+      // Create WhatsApp message
+      const whatsappMessage = `New Enquiry:\nName: ${firstName}\nEmail: ${email}`;
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappURL = `https://wa.me/27734961739?text=${encodedMessage}`; // Replace with your WhatsApp number
+
+      // Open WhatsApp in new tab
+      window.open(whatsappURL, '_blank');
+    } else {
+      setMessage(data.message || 'Subscription failed. Please try again.');
+      toast.error('Subscription failed. Please try again.');
     }
-
-    try {
-      console.log('Payload:', { firstName, email });
-
-      const { data } = await Api.post('/subscribe', {
-        firstName,
-        email,
-      });
-
-      console.log('API Response:', data);
-
-      if (data.success) {
-        setMessage('Subscription successful! Please check your email for confirmation.');
-        toast.success('Subscription successful! Please check your email for confirmation.');
-        setFirstName('');
-        setEmail('');
-      } else {
-        setMessage(data.message || 'Subscription failed. Please try again.');
-        toast.error('Subscription failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error during subscription:', error);
-      setMessage('Subscription failed. Please check your internet connection or try again later.');
-      toast.error('Subscription failed. Please try again later.');
-    }
-  };
+  } catch (error) {
+    console.error('Error during subscription:', error);
+    setMessage('Subscription failed. Please check your internet connection or try again later.');
+    toast.error('Subscription failed. Please try again later.');
+  }
+};
 
   return (
     <footer className="footer">
